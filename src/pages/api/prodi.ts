@@ -1,0 +1,31 @@
+import { NextApiRequest, NextApiResponse } from "next";
+import prisma from "@/services/prisma";
+
+
+const handlePostMethod = async (req: NextApiRequest, res: NextApiResponse) => {
+    const selectedProdi =req.body;
+    console.log(req.body);
+    try {
+    
+        const result = await prisma.prodi.createMany({
+            data:selectedProdi,
+        });
+        res.status(202).json({message:"Success", result});
+    } catch (error) {
+        console.log("eror", error);
+        res.status(500).json({ error: "Error creating content" });
+    }
+}
+
+
+
+
+
+export default function handler(req: NextApiRequest, res: NextApiResponse) {
+    if (req.method === "POST") {
+        return handlePostMethod(req, res);
+    }
+    else {
+        res.status(405).json({ message: "Method not allowed" });
+    }
+}

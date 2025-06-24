@@ -1,0 +1,128 @@
+[
+    {
+        "id": 1,
+        "name": "S1 Ilmu Komputer",
+        "Link": ""
+
+    },
+    {
+        "id": 2,
+        "name": "S1 Teknologi Informasi",
+        "Link": ""
+
+    },
+    {
+        "id": 3,
+        "name": "S1 Teknologi Pangan",
+        "Link": ""
+
+    },
+    {
+        "id": 4,
+        "name": "D3 Sistem Informasi",
+        "Link": ""
+
+    },
+    {
+        "id": 5,
+        "name": "D3 Rekayasa Perangkat Lunak",
+        "Link": ""
+
+    },
+    {
+        "id": 6,
+        "name": "S1 Rekayasa Perangkat Lunak",
+        "Link": ""
+
+    },
+    {
+        "id": 7,
+        "name": "S1 Kedokteran",
+        "Link": ""
+
+    },
+    {
+        "id": 8,
+        "name": "Profesi Dokter",
+        "Link": ""
+
+    },
+    {
+        "id": 9,
+        "name": "S1 Gizi",
+        "Link": ""
+
+    },
+    {
+        "id": 10,
+        "name": "S1 Farmasi",
+        "Link": ""
+
+    },
+    {
+        "id": 11,
+        "name": "S1 Hukum",
+        "Link": ""
+
+    },
+    {
+        "id": 12,
+        "name": "S1 Pariwisata",
+        "Link": ""
+
+    },
+    {
+        "id": 13,
+        "name": "S1 Sastra Inggris",
+        "Link": ""
+
+    },
+    {
+        "id": 14,
+        "name": "S1 Desain Komunikasi Visual",
+        "Link": ""
+
+    },
+    {
+        "id": 15,
+        "name": "S1 Manajemen",
+        "Link": ""
+
+    },
+    {
+        "id": 16,
+        "name": "S1 Akuntansi",
+        "Link": ""
+
+    },
+    {
+        "id": 17,
+        "name": "S1 Bisnis Digital",
+        "Link": ""
+
+    },
+    {
+        "id": 18,
+        "name": "S1 Pendidikan Kepelatihan Olahraga",
+        "Link": ""
+
+    },
+    {
+        "id": 19,
+        "name": "S1 Pendidikan Teknologi Informasi",
+        "Link": ""
+
+    },
+    {
+        "id": 20,
+        "name": "S2 Ilmu Komputer",
+        "Link": ""
+
+    },
+    {
+        "id": 21,
+        "name": "S2 Sastra Inggris",
+        "Link": ""
+
+    }
+]

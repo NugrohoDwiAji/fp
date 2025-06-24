@@ -1,0 +1,72 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  // output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Visit {
+  id        Int      @id @default(autoincrement())
+  ipAddress String   @map("ip_address")
+  userAgent String   @map("user_agent")
+  url       String
+  visitedAt DateTime @default(now()) @map("visited_at")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  username  String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Content {
+  id    String @id @default(uuid())
+  title String
+  value String @db.LongText
+}
+
+model Berkas {
+  id       String   @id @default(uuid())
+  title    String
+  filepath String
+  uploadat DateTime @default(now())
+}
+
+model Berita {
+  id        String   @id @default(uuid())
+  title     String
+  description String @db.LongText
+  filepath  String
+  uploudat  DateTime @default(now())
+}
+
+model Pengumuman {
+  id String @id @default(uuid())
+  title String
+  file_path String
+  uploadat DateTime @default(now())
+}
+
+model Identitas {
+    id String @id @default(uuid())
+    name String @unique
+    value String
+}
+
+
+model Prodi{
+    id String @id @default(uuid())
+    nama String
+    link String
+}
