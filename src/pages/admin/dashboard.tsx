@@ -11,7 +11,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { format } from "date-fns";
+import { format, set } from "date-fns";
 import ButtonPrimary from "@/components/elements/ButtonPrimary";
 import Prodis from "@/components/datas/Prodi.json";
 import FileDropzone from "@/components/admin/elements/FileDropZone";
@@ -21,6 +21,7 @@ type VisitData = {
   data: { date: string; count: number }[];
   date: string;
   count: number;
+  rawResults?: any;
 };
 
 type Identitas = {
@@ -50,9 +51,11 @@ export const getServerSideProps: GetServerSideProps = async () => {
   return { props: { data } };
 };
 
-export default function Dashboard({ data}: VisitData) {
+export default function Dashboard({ data, rawResults }: VisitData) {
   const [canEdit, setcanEdit] = useState(false);
+  const [dataFak, setdataFak] = useState<string[]>([]);
   const [datas, setDatas] = useState<Identitas[]>([]);
+  const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [organisasiImg, setOrganisasiImg] = useState<File | null>(null)
     // State untuk menyimpan prodi yang dipilih
   const [selectedProdi, setSelectedProdi] = useState<Prodi[]>([]);
