@@ -17,6 +17,16 @@ const handlePostMethod = async (req: NextApiRequest, res: NextApiResponse) => {
     }
 }
 
+const handlegetMethod = async (req: NextApiRequest, res: NextApiResponse) => {
+    try {
+        const result = await prisma.prodi.findMany();
+        res.status(200).json(result);
+    } catch (error) {
+        console.error("Error fetching content:", error);
+        res.status(500).json({ error: "Error fetching content" });
+    }
+}
+
 
 
 
@@ -24,6 +34,9 @@ const handlePostMethod = async (req: NextApiRequest, res: NextApiResponse) => {
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === "POST") {
         return handlePostMethod(req, res);
+    }
+    if(req.method === "GET") {
+        return handlegetMethod(req, res);
     }
     else {
         res.status(405).json({ message: "Method not allowed" });

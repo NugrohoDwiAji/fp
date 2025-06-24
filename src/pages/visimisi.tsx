@@ -1,6 +1,46 @@
-import React from "react";
+import React,{useState, useEffect} from "react";
+import axios from "axios";
+
+type ContentType = {
+  id: string;
+  title: string;
+  value: string;
+};
+
+type IdentitasType = {
+  id: string;
+  name: string;
+  value: string;
+};
 
 export default function Visimisi() {
+  const [content, setContent] = useState<ContentType[] | null>([])
+  const [identitas, setIdentitas] = useState<IdentitasType[] | null>([])
+
+
+  const handleGetIdentitas = async () => {
+    try {
+      const result = await axios.get("/api/identitas");
+      setIdentitas(result.data);
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
+
+const handleGetContent = async () => {
+  try {
+    const result = await axios.get("/api/content");
+    setContent(result.data);
+  } catch (error) {}
+};
+
+useEffect(() => {
+  handleGetIdentitas();
+  handleGetContent();
+}, []);
+
+
   return (
     <div className="">
       {/* jumbotron */}
@@ -20,18 +60,15 @@ export default function Visimisi() {
         <div>
           <h1 className="font-bold text-xl md:text-2xl mb-2">Visi</h1>
           <p className="text-lg">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo
-            distinctio, dolorum delectus ratione minus explicabo. Nesciunt eius
-            deserunt fugit obcaecati adipisci labore, magni voluptate odio.
+            {content?.find((item) => item.title === "Visi")
+                ?.value}
           </p>
         </div>
         <div>
           <h1 className="font-bold mt-10 text-xl md:text-2xl mb-2">Misi</h1>
           <p className="text-lg">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur,
-            non et dignissimos at, ipsa veritatis maxime reprehenderit, beatae
-            consequuntur veniam numquam deleniti illo nulla earum vero eaque a
-            autem! Exercitationem repellendus vitae sint beatae animi.
+           {content?.find((item) => item.title === "Misi")
+                ?.value}
           </p>
         </div>
       </main>

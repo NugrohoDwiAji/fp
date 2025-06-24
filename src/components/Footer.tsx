@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect, useState} from "react";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { Phone } from "lucide-react";
@@ -6,48 +6,77 @@ import { User } from "lucide-react";
 import { Mail } from "lucide-react";
 import { Globe } from "lucide-react";
 import { Facebook } from "lucide-react";
-
 import { Instagram } from "lucide-react";
+import axios from 'axios';
 
-const menu = [
-  {
-    name: "Manajemen",
-    url: "#",
-    icon: <ChevronRight />,
-  },
-  { name: "Akuntansi", url: "#", icon: <ChevronRight /> },
-  {
-    name: "Bisnis Digital",
-    url: "/informasipeserta/pendaftaran",
-    icon: <ChevronRight />,
-  },
-];
+type IdentitasType = {
+  id: string;
+  name: string;
+  value: string;
+};
 
-const kontak = [
-  {
-    name: "+62 xxxx xxxx xxx",
-    icon: <Phone size={17} />,
-    url: "https://wa.me/+62xxxxxxx",
-  },
-  {
-    name: "Fakultas Ekonomi Dan Bisnis",
-    icon: <User size={17} />,
-    url: "",
-  },
-  {
-    name: "feb@universitasbumigora.ac.id",
-    icon: <Mail size={17} />,
-    url: "",
-  },
-];
+type ProdiType = {
+  id: string;
+  nama: string;
+  link: string;
+};
 
-const icon = [
-  { icon: <Globe />, url: "https://universitasbumigora.ac.id/" },
-  { icon: <Facebook />, url: "https://facebook.com/universitasbumigora/" },
-  { icon: <Instagram />, url: "https://instagram.com/universitasbumigora/" },
-];
+
+
+
 
 const Footer = () => {
+   const [identitas, setIdentitas] = useState<IdentitasType[] | null>([])
+   const [prodi, setProdi] = useState<ProdiType[] | null>([])
+
+  const handleGetIdentitas = async () => {
+    try {
+      const result = await axios.get("/api/identitas");
+      setIdentitas(result.data);
+    } catch (error) {
+      console.log(error)
+    }
+  };
+const handleGetProdi = async () => {
+    try {
+      const result = await axios.get("/api/prodi");
+      setProdi(result.data);
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
+  const icon = [
+  { icon: <Globe />, url: `#` },
+  { icon: <Facebook />, url: `https://${identitas?.find((item) => item.name === "Facebook")?.value}` },
+  { icon: <Instagram />, url: `https://${identitas?.find((item) => item.name === "Instagram")?.value}` },
+];
+  
+  
+
+
+  const kontak = [
+    {
+      name: identitas?.find((item) => item.name === "No Handphone")?.value,
+      icon: <Phone size={17} />,
+      url: `https://wa.me/+62xxxxxxx${identitas?.find((item) => item.name === "No Handphone")?.value}`,
+    },
+    {
+      name: identitas?.find((item) => item.name === "Nama Fakultas")?.value,
+      icon: <User size={17} />,
+      url: "",
+    },
+    {
+      name: identitas?.find((item) => item.name === "Email")?.value,
+      icon: <Mail size={17} />,
+      url: `mailto:${identitas?.find((item) => item.name === "Email")?.value}`,
+    },
+  ];
+
+    useEffect(() => {
+    handleGetIdentitas();
+    handleGetProdi();
+  }, [])
   return (
     <footer className="bg-blue-950 text-white flex flex-col items-center">
       <div className="md:flex justify-between md:gap-16 px-7 pt-5 md:pt-14 md:px-10 pb-10 lg:flex gap-28 lg:text-xl lg:gap-0 lg:w-7xl">
@@ -65,10 +94,10 @@ const Footer = () => {
         <div className="mt-7 md:mt-0">
           <h1 className="font-bold text-xl mb-2">Departemen</h1>
           <div>
-            {menu.map((item, index) => (
-              <Link href={item.url} className="flex mb-2" key={index}>
-                {item.icon}
-                {item.name}
+            {prodi?.map((item, index) => (
+              <Link href={item.id} className="flex mb-2" key={index}>
+                 <ChevronRight/>
+                {item.nama}
               </Link>
             ))}
           </div>

@@ -1,6 +1,28 @@
-import React from "react";
 
+import React,{useEffect, useState} from "react";
+import Image from "next/image";
+import axios from 'axios';
+
+type IdentitasType = {
+  id: string;
+  name: string;
+  value: string;
+};
 export default function StrukturOrganisasi() {
+   const [identitas, setIdentitas] = useState<IdentitasType[] | null>([])
+
+  const handleGetIdentitas = async () => {
+    try {
+      const result = await axios.get("/api/identitas");
+      setIdentitas(result.data);
+    } catch (error) {
+      console.log(error)
+    }
+  };
+  useEffect(() => {
+    handleGetIdentitas();
+  }, [])
+  
   return (
     <div>
       {/* jumbotron */}
@@ -17,9 +39,9 @@ export default function StrukturOrganisasi() {
       </div>
 
       {/* Main */}
-      <main>
-
-      <h1 className="font-bold text-xl md:text-2xl my-5 text-center min-h-64">Struktur Organisasi</h1>
+      <main className="flex flex-col items-center pb-10 min-h-64">
+      <h1 className="font-bold text-xl md:text-2xl my-5 text-center ">Struktur Organisasi</h1>
+      <Image src={identitas?.find((item) => item.name === "Struktur Organisasi")?.value || ""} alt="Struktur Organisasi" width={1000} height={1000} />
       </main>
     </div>
   );

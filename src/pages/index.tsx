@@ -33,7 +33,9 @@ export default function Home() {
     try {
       const result = await axios.get("/api/identitas");
       setIdentitas(result.data);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   const handleGetContent = async () => {
@@ -109,7 +111,7 @@ export default function Home() {
           <div className="md:w-[45%] h-full flex flex-col gap-5 justify-center">
             <p className="text-justify indent-10 max-h-[23rem] truncate text-wrap">
               {dataContent?.find((item) => item.title === "Tentang Fakultas")
-                ?.value            }
+                ?.value}
             </p>
             <ButtonPrimary
               ClassName="bg-blue-950 text-white hover:text-blue-950 hover:bg-white hover:border-2 hover:border-blue-950 font-semibold ease-in-out duration-300 transition-all"

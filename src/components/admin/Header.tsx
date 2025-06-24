@@ -1,6 +1,8 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
 
 export default function Header() {
+ 
+
   return (
    <div className="fixed right-0 top-0 left-0 flex justify-end items-center p-5 bg-white">
       <div className="flex items-center">
