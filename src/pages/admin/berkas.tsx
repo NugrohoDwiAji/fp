@@ -9,7 +9,7 @@ type data = {
   id: string;
   title: string;
 };
-export default function berkas() {
+export default function Berkas() {
   const [confirm, setconfirm] = useState(false);
   const [files, setFiles] = useState<File | null>(null);
   const [title, setTitle] = useState("");

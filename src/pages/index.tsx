@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import TenagaKerja from "../components/datas/TenagaKerja.json";
 import CardBerita from "../components/cards/CardBerita";
 import ButtonPrimary from "@/components/elements/ButtonPrimary";
 import CardPrestasi from "@/components/cards/CardPrestasi";
 import axios from "axios";
 import CardPengumuman from "@/components/cards/CardPengumuman";
-import { set } from "date-fns";
+import Image from "next/image";
 
 type ContentType = {
   id: string;
@@ -179,9 +178,9 @@ export default function Home() {
 
       {/* Kenapa Kami */}
       <div className="flex justify-center items-center py-5 bg-white gap-5 h-fit">
-        <img src="/img/ubg-full.jpg" alt="eror" className=" h-28 md:h-48" />
+        <Image src="/img/ubg-full.jpg" alt="eror" className=" h-28 md:h-48" />
         <div className="h-32 w-[2px] bg-blue-950 mx-2"></div>
-        <img src="/img/banpt.png" alt="eror" className="h-20 md:h-36" />
+        <Image src="/img/banpt.png" alt="eror" className="h-20 md:h-36" />
       </div>
     </div>
   );

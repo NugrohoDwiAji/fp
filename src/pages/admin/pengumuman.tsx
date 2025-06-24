@@ -11,7 +11,7 @@ type Data = {
   file_path: string;
 };
 
-export default function pengumuman() {
+export default function Pengumuman() {
   const [isInput, setIsInput] = useState(false);
   const [title, setTitle] = useState("");
   const [datas, setDatas] = useState<Data[] | null>(null);

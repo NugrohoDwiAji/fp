@@ -52,7 +52,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   return { props: { data } };
 };
 
-export default function dashboard({ data, rawResults }: VisitData) {
+export default function Dashboard({ data, rawResults }: VisitData) {
   const [canEdit, setcanEdit] = useState(false);
   const [dataFak, setdataFak] = useState<string[]>([]);
   const [datas, setDatas] = useState<Identitas[]>([]);

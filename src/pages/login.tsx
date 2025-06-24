@@ -5,7 +5,7 @@ import ButtonPrimary from "@/components/elements/ButtonPrimary";
 import { useIsDesktop } from "@/components/customhooks/hook";
 import Link from "next/link";
 
-export default function login() {
+export default function Login() {
   const isDesktop = useIsDesktop();
   return isDesktop ? (
     <div className="h-screen w-screen bg-radial-[at_50%_25%] from-blue-500 to-blue-800 to-75% flex justify-center items-center">

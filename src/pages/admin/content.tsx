@@ -11,7 +11,7 @@ type ContentType = {
   value: string;
 };
 
-export default function content() {
+export default function Content() {
   const [isEdit, setisEdit] = useState(false);
   const [data, setData] = useState<ContentType[] | null>([]);
   const [detailData, setdetailData] = useState<ContentType | null>(null)
