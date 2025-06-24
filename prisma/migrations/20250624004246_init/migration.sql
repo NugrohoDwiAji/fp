@@ -1,5 +1,5 @@
 -- CreateTable
-CREATE TABLE `visit` (
+CREATE TABLE `Visit` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `ip_address` VARCHAR(191) NOT NULL,
     `user_agent` VARCHAR(191) NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE `visit` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `user` (
+CREATE TABLE `User` (
     `id` VARCHAR(191) NOT NULL,
     `username` VARCHAR(191) NOT NULL,
     `password` VARCHAR(191) NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE `user` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `content` (
+CREATE TABLE `Content` (
     `id` VARCHAR(191) NOT NULL,
     `title` VARCHAR(191) NOT NULL,
     `value` LONGTEXT NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE `content` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `berkas` (
+CREATE TABLE `Berkas` (
     `id` VARCHAR(191) NOT NULL,
     `title` VARCHAR(191) NOT NULL,
     `filepath` VARCHAR(191) NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE `berkas` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `berita` (
+CREATE TABLE `Berita` (
     `id` VARCHAR(191) NOT NULL,
     `title` VARCHAR(191) NOT NULL,
     `description` LONGTEXT NOT NULL,
@@ -52,7 +52,7 @@ CREATE TABLE `berita` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `pengumuman` (
+CREATE TABLE `Pengumuman` (
     `id` VARCHAR(191) NOT NULL,
     `title` VARCHAR(191) NOT NULL,
     `file_path` VARCHAR(191) NOT NULL,
@@ -62,7 +62,7 @@ CREATE TABLE `pengumuman` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `identitas` (
+CREATE TABLE `Identitas` (
     `id` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
     `value` VARCHAR(191) NOT NULL,
@@ -72,7 +72,7 @@ CREATE TABLE `identitas` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `prodi` (
+CREATE TABLE `Prodi` (
     `id` VARCHAR(191) NOT NULL,
     `nama` VARCHAR(191) NOT NULL,
     `link` VARCHAR(191) NOT NULL,
