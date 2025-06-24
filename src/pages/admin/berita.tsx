@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import ButtonPrimary from "@/components/elements/ButtonPrimary";
 import FileDropzone from "@/components/admin/elements/FileDropZone";
 
-export default function berita() {
+export default function Berita() {
   const [isInput, setIsInput] = useState(false);
 
   const handleFileDrop = (file: File) => {

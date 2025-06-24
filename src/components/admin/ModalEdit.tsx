@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import ButtonPrimary from "../elements/ButtonPrimary";
-import { set } from "date-fns";
 import axios from "axios";
 
 type ModalEditProps = {

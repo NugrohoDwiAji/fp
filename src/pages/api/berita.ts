@@ -22,7 +22,7 @@ const handlePostMethode = async (req: NextApiRequest, res: NextApiResponse) => {
 
   const form = formidable({
     uploadDir: path.join(process.cwd(), "public", "berita"),
-    filename: (_, __, part, ___) => {
+    filename: (_, __, part) => {
       return `${part.originalFilename}`;
     },
   });

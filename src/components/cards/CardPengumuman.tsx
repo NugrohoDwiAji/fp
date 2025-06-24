@@ -1,6 +1,6 @@
 import React from "react";
 import ButtonPrimary from "../elements/ButtonPrimary";
-import { format, set } from "date-fns";
+import { format } from "date-fns";
 
 
 type Props = {

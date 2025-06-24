@@ -1,10 +1,11 @@
 import React from "react";
 import ButtonPrimary from "../elements/ButtonPrimary";
+import Image from "next/image";
 
 export default function CardBerita() {
   return (
     <div className="h-[28rem] w-72 md:w-80 shadow-xl rounded-xl p-3 flex flex-col justify-between gap-4 bg-white">
-      <img
+      <Image
         src="/img/image_notfound.jpg"
         alt="notfound"
         className="h-52 w-full rounded-xl "

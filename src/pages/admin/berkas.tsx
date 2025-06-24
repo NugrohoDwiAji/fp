@@ -3,7 +3,6 @@ import AdminLayout from "@/components/layouts/AdminLayout";
 import FileDropzone from "@/components/admin/elements/FileDropZone";
 import ButtonPrimary from "@/components/elements/ButtonPrimary";
 import axios from "axios";
-import { set } from "date-fns";
 
 type data = {
   id: string;
@@ -34,11 +33,12 @@ export default function Berkas() {
       file: files,
     };
     try {
-      const result = await axios.post("/api/berkas", data, {
+    await axios.post("/api/berkas", data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
+
       document.location.reload();
     } catch (error) {
       console.log("eror", error);
@@ -47,7 +47,7 @@ export default function Berkas() {
 
   const handleDeleteItem = async (id: string) => {
     try {
-      const result = await axios.delete(`/api/berkasDetails?id=${id}`);
+      await axios.delete(`/api/berkasDetails?id=${id}`);
       document.location.reload();
     } catch (error) {
       console.log("eror", error);
@@ -70,7 +70,7 @@ export default function Berkas() {
       file: files,
     };
     try {
-      const result = await axios.put(`/api/berkasDetails?id=${id}`, data, {
+       await axios.put(`/api/berkasDetails?id=${id}`, data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -164,7 +164,7 @@ export default function Berkas() {
           </tr>
         </thead>
         {data.map((item, index) => (
-          <tbody>
+          <tbody key={index}>
             <tr>
               <td className="py-2 text-center bg-blue-100 border-b border-gray-300">
                 {index + 1}

@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { AlignRight, ArrowRightFromLine } from "lucide-react";
 import Link from "next/link";
-import { redirect, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import classnames from "classnames";
 type Props = {
   isScroll: boolean;

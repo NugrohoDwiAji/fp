@@ -3,7 +3,6 @@ import AdminLayout from "@/components/layouts/AdminLayout";
 import ButtonPrimary from "@/components/elements/ButtonPrimary";
 import FileDropzone from "@/components/admin/elements/FileDropZone";
 import axios from "axios";
-import { set } from "date-fns";
 
 type Data = {
   id: string;
@@ -35,7 +34,7 @@ export default function Pengumuman() {
       file: file,
     };
     try {
-      const result = await axios.post("/api/pengumuman", data, {
+      await axios.post("/api/pengumuman", data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -62,7 +61,7 @@ export default function Pengumuman() {
       file: file,
     };
     try {
-      const result = await axios.put(`/api/pengumumanDetails?id=${id}`, data, {
+     await axios.put(`/api/pengumumanDetails?id=${id}`, data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -92,7 +91,7 @@ export default function Pengumuman() {
 
   const handleDelete = async (id: string) => {
     try {
-      const result = await axios.delete(`/api/pengumuman?id=${id}`);
+      await axios.delete(`/api/pengumuman?id=${id}`);
       document.location.reload();
     } catch (error) {
       console.log("error", error);
@@ -167,7 +166,7 @@ export default function Pengumuman() {
         </thead>
         <tbody>
           {datas?.map((item, index) => (
-            <tr className="border-b border-x border-gray-300">
+            <tr key={index} className="border-b border-x border-gray-300">
               <td className="py-2 text-center bg-blue-100">{index + 1}</td>
               <td className="py-2 px-2 border-x border-gray-300 bg-blue-100">
                 {item.title}
