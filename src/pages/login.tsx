@@ -5,6 +5,7 @@ import { Lock, User } from "lucide-react";
 import ButtonPrimary from "@/components/elements/ButtonPrimary";
 import { useIsDesktop } from "@/components/customhooks/hook";
 import axios from "@/components/customhooks/axios";
+import { CircleAlert } from 'lucide-react';
 
 type DataLogin = {
   username: string;
@@ -17,15 +18,19 @@ export default function Login() {
     username: "",
     password: "",
   })
+  const [isLogin, setIsLogin] = useState(false)
 
 
 const handleLogin = async() => {
   try {
     const response = await axios.post('/login', kredensil);
-    window.location.href = '/admin/dashboard';
+
+      window.location.href = '/admin/dashboard';
+   
+  
   } catch (error) {
     console.log(error)
-    
+    setIsLogin(true)
   }
 
 }
@@ -35,6 +40,7 @@ const handleLogin = async() => {
   const isDesktop = useIsDesktop();
   return isDesktop ? (
     <div className="h-screen w-screen bg-radial-[at_50%_25%] from-blue-500 to-blue-800 to-75% flex justify-center items-center">
+      
       <AuthLayout title="Login">
         <form action="" className="flex flex-col gap-3 mt-7 ">
           <div className="flex items-center bg-gray-300 rounded-lg px-3 border-2 border-blue-400">
@@ -64,6 +70,7 @@ const handleLogin = async() => {
             />
           </div>
         </form>
+        {isLogin && <h1 className="text-red-600 text-sm flex gap-1 items-center"><CircleAlert />Credensial Salah</h1>}
           <ButtonPrimary
             ClassName="w-full bg-blue-700 py-3 text-white mt-10"
             onClick={() => handleLogin()}

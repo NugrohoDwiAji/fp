@@ -5,7 +5,7 @@ import axios from "axios";
 import CardPengumuman from "@/components/cards/CardPengumuman";
 import AOS from "aos";
 import "aos/dist/aos.css";
-
+import AnimatedNumber from "@/components/elements/AnimatedNumber";
 
 type ContentType = {
   id: string;
@@ -44,7 +44,7 @@ export default function Home() {
       const result = await axios.get("/api/identitas");
       setIdentitas(result.data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
@@ -63,7 +63,7 @@ export default function Home() {
       console.log(error);
     }
   };
-    const handleGetBerita = async () => {
+  const handleGetBerita = async () => {
     try {
       const result = await axios.get("/api/berita");
       setDataBerita(result.data);
@@ -82,7 +82,7 @@ export default function Home() {
     });
   }, []);
 
-    useEffect(() => {
+  useEffect(() => {
     AOS.init({
       duration: 300, // Durasi animasi dalam milidetik
       once: true, // Animasi hanya berjalan sekali
@@ -102,12 +102,12 @@ export default function Home() {
             <p className="text-[8px] md:text-sm lg:text-lg text-white hidden md:block lg:w-96">
               {dataContent?.find((item) => item.title === "Tagline")?.value}
             </p>
-            <ButtonPrimary
-              ClassName="mt-2 md:mt-5 border-2 border-white text-white "
-              onClick={() => {}}
+            <a
+              className="mt-2 md:mt-5 border-2 border-white text-white px-4 py-2 md:px-6  rounded-lg hover:scale-105 hover:shadow-2xl shadow-lg ease-in-out duration-300 transition-all text-sm md:text-xl w-fit hover:cursor-pointer "
+              href="https://pmb.universitasbumigora.ac.id/v.2019/#/jurusan"
             >
               Daftar Sekarang
-            </ButtonPrimary>
+            </a>
           </div>
           {/* <div className="lg:w-[40%] w-[50%] flex justify-center">
             <img
@@ -128,9 +128,9 @@ export default function Home() {
         <div className="md:flex gap-5 justify-between lg:px-14 md:h-[28rem] pb-10">
           <div className="h-full flex items-center justify-center w-[40%] ">
             <img
-            data-aos="flip-left"
-     data-aos-easing="ease-out-cubic"
-     data-aos-duration="1000"
+              data-aos="flip-left"
+              data-aos-easing="ease-out-cubic"
+              data-aos-duration="1000"
               src="/img/avatar.png"
               alt=""
               className="hidden md:block md:h-64 lg:h-96 "
@@ -138,8 +138,10 @@ export default function Home() {
           </div>
           <div className="md:w-[45%] h-full flex flex-col gap-5 justify-center">
             <p className="text-justify indent-10 max-h-[23rem] truncate text-wrap">
-              {dataContent?.find((item) => item.title === "Tantang Fakultas")
-                ?.value}
+              {
+                dataContent?.find((item) => item.title === "Tantang Fakultas")
+                  ?.value
+              }
             </p>
             <ButtonPrimary
               ClassName="bg-blue-950 text-white hover:text-blue-950 hover:bg-white hover:border-2 hover:border-blue-950 font-semibold ease-in-out duration-300 transition-all"
@@ -156,22 +158,20 @@ export default function Home() {
         <div className="bg-blue-950/95 h-full text-white font-bold flex justify-center items-center gap-6 md:gap-20 lg:gap-36 py-3 md:py-12 px-4 flex-wrap md:flex-row  ">
           <div className="flex gap-2 items-center md:gap-4">
             <h1 className="text-2xl md:text-5xl lg:text-6xl ">
-              {
-                identitas?.find((item) => item.name === "Banyak Program Studi")
-                  ?.value
-              }
+              <AnimatedNumber end={Number(identitas?.find((item) => item.name === "Banyak Program Studi")?.value || 0)} duration={4}/>
+              
             </h1>
             <h1 className="md:text-lg lg:text-2xl">Program Studi</h1>
           </div>
           <div className="flex gap-2 items-center md:gap-4">
             <h1 className="text-2xl md:text-5xl lg:text-6xl ">
-              {identitas?.find((item) => item.name === "Banyak Dosen")?.value}
+              <AnimatedNumber end={Number(identitas?.find((item) => item.name === "Banyak Dosen")?.value || 0 )} duration={6}/>
             </h1>
             <h1 className="md:text-lg lg:text-2xl">Lecturer</h1>
           </div>
           <div className="flex gap-2 items-center md:gap-4">
             <h1 className="text-2xl md:text-5xl lg:text-6xl ">
-              {identitas?.find((item) => item.name === "Banyak Staf")?.value}
+             <AnimatedNumber end={Number(identitas?.find((item) => item.name === "Banyak Staf")?.value || 0)} duration={6}/>
             </h1>
             <h1 className="md:text-lg lg:text-2xl">Staf</h1>
           </div>
@@ -183,11 +183,16 @@ export default function Home() {
         <h1 className="text-xl lg:text-2xl font-bold text-blue-950">Berita</h1>
         <hr className="border-t-[3px] border-blue-950 w-[20%] md:w-[15%] lg:w-[6%]  mb-5" />
         <div className="flex gap-10 flex-wrap justify-center">
-          {
-            dataBerita.map((item, index) => (
-              <CardBerita key={index} img={item.filepath} content={item.description} title={item.title} date={item.uploudat } id={item.id}/>
-            ))
-          }
+          {dataBerita.map((item, index) => (
+            <CardBerita
+              key={index}
+              img={item.filepath}
+              content={item.description}
+              title={item.title}
+              date={item.uploudat}
+              id={item.id}
+            />
+          ))}
         </div>
       </div>
 
@@ -210,9 +215,19 @@ export default function Home() {
 
       {/* Kenapa Kami */}
       <div className="flex justify-center items-center py-5 bg-white gap-5 h-fit">
-        <img data-aos="zoom-in-right" src="/img/ubg-full.jpg" alt="eror" className=" h-28 md:h-48" />
+        <img
+          data-aos="zoom-in-right"
+          src="/img/ubg-full.jpg"
+          alt="eror"
+          className=" h-28 md:h-48"
+        />
         <div className="h-32 w-[2px] bg-blue-950 mx-2"></div>
-        <img data-aos="zoom-in-left" src="/img/banpt.png" alt="eror" className="h-20 md:h-36" />
+        <img
+          data-aos="zoom-in-left"
+          src="/img/banpt.png"
+          alt="eror"
+          className="h-20 md:h-36"
+        />
       </div>
     </div>
   );
