@@ -9,13 +9,12 @@ const AuthLayout = ({ children, title }: Props) => {
   return (
     <div className="h-[33rem] w-[59rem] bg-white shadow-2xl rounded-3xl flex">
       <div className="w-1/2  rounded-l-3xl relative overflow-hidden">
-        <div className="h-[35rem] w-[35rem] absolute -left-24 -top-40 rounded-full bg-radial-[at_25%_25%] flex flex-col justify-center items-center from-blue-500 to-blue-800 to-75% text-white">
+        <div className="h-[35rem] w-[35rem] absolute -left-24 -top-40 rounded-full bg-radial-[at_25%_25%] flex flex-col justify-center items-center from-blue-500 to-blue-800 to-75% text-white ">
           <div>
             <h1 className="text-4xl font-bold">WELCOME</h1>
-            <h2 className="text-2xl font-semibold">Lorem ipsum dolor sit.</h2>
+            <h2 className="text-2xl font-semibold mb-5">Admin Fakultas</h2>
             <p>
-              Lorem ipsum dolor, sit amet consectetur <br />
-              adipisicing elit. Assumenda, alias!
+              Silahkan Atur Content Web Fakultas Anda <br /> Agar Terlihat Lebih Menarik...!😊
             </p>
           </div>
         </div>
@@ -24,7 +23,7 @@ const AuthLayout = ({ children, title }: Props) => {
       </div>
       <div className="px-5 pt-14">
         <h1 className="text-3xl font-bold mb-2">{title}</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Silahakan Masukan Kredensial Anda...</p>
        {children}
       </div>
     </div>

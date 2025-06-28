@@ -18,7 +18,7 @@ const Informasi = () => {
       {/* Main */}
       <main>
 
-      <h1 className="font-bold text-xl md:text-2xl my-5 text-center min-h-64">Kurikulum</h1>
+      <h1 className="font-bold text-xl md:text-2xl my-5 text-center min-h-64">Tentang</h1>
       </main>
     </div>
   )

@@ -3,6 +3,8 @@ import AdminLayout from "@/components/layouts/AdminLayout";
 import ButtonPrimary from "@/components/elements/ButtonPrimary";
 import ModalEdit from "@/components/admin/ModalEdit";
 import axios from "axios";
+import SuccessAlert from "@/components/cards/AlertSucces";  
+import { set } from "date-fns";
 
 type ContentType = {
   id: string;
@@ -14,13 +16,14 @@ export default function Content() {
   const [isEdit, setisEdit] = useState(false);
   const [data, setData] = useState<ContentType[] | null>([]);
   const [detailData, setdetailData] = useState<ContentType | null>(null)
+  const [showAlert, setShowAlert] = useState(false);
 
 const handleEdit = async (id: string) =>{
   setisEdit(true);
   try {
     const result = await axios.get(`/api/contentDetails?id=${id}`);
     setdetailData(result.data);
-    console.log("getbyid",result.data);
+   
   } catch (error) {
     console.log(error);
   }
@@ -98,6 +101,13 @@ const handleEdit = async (id: string) =>{
           />
         )}
       </div>
+        
+      <SuccessAlert 
+        show={showAlert} 
+        onClose={() => setShowAlert(false)}
+        message="Data berhasil disimpan ke database!"
+        duration={4000} // Opsional: custom duration
+      />
     </AdminLayout>
   );
 }

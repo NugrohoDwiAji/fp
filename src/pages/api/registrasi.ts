@@ -18,7 +18,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 password: true,
             }
         });
-        res.status(202).json("Created");
+        res.status(202).json({message:"Created", result});
     } catch (error) {
         console.error('Error creating user:', error);
         res.status(500).json({ error: 'Error creating user' });

@@ -3,6 +3,8 @@ import CardBerita from "../components/cards/CardBerita";
 import ButtonPrimary from "@/components/elements/ButtonPrimary";
 import axios from "axios";
 import CardPengumuman from "@/components/cards/CardPengumuman";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 
 type ContentType = {
@@ -24,9 +26,17 @@ type PengumumanType = {
   uploadat: string;
 };
 
+type DataBerita = {
+  id: string;
+  title: string;
+  description: string;
+  filepath: string;
+  uploudat: string;
+};
 export default function Home() {
   const [dataContent, setdataContent] = useState<ContentType[]>([]);
   const [identitas, setIdentitas] = useState<IdentitasType[]>([]);
+  const [dataBerita, setDataBerita] = useState<DataBerita[]>([]);
   const [dataPengumuman, setDataPengumuman] = useState<PengumumanType[]>([]);
 
   const handleGetIdentitas = async () => {
@@ -53,8 +63,17 @@ export default function Home() {
       console.log(error);
     }
   };
+    const handleGetBerita = async () => {
+    try {
+      const result = await axios.get("/api/berita");
+      setDataBerita(result.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
+    handleGetBerita();
     handleGetIdentitas();
     handleGetContent();
     handleGetPengumuman();
@@ -63,7 +82,13 @@ export default function Home() {
     });
   }, []);
 
-  console.log("ini title", dataContent);
+    useEffect(() => {
+    AOS.init({
+      duration: 300, // Durasi animasi dalam milidetik
+      once: true, // Animasi hanya berjalan sekali
+      easing: "ease-in-out", // Efek transisi animasi
+    });
+  }, []);
   return (
     <div className="">
       {/* Banner */}
@@ -103,14 +128,17 @@ export default function Home() {
         <div className="md:flex gap-5 justify-between lg:px-14 md:h-[28rem] pb-10">
           <div className="h-full flex items-center justify-center w-[40%] ">
             <img
-              src="/img/mahasiswa.png"
+            data-aos="flip-left"
+     data-aos-easing="ease-out-cubic"
+     data-aos-duration="1000"
+              src="/img/avatar.png"
               alt=""
-              className="hidden md:block md:h-64 lg:h-96 w-1/2"
+              className="hidden md:block md:h-64 lg:h-96 "
             />
           </div>
           <div className="md:w-[45%] h-full flex flex-col gap-5 justify-center">
             <p className="text-justify indent-10 max-h-[23rem] truncate text-wrap">
-              {dataContent?.find((item) => item.title === "Tentang Fakultas")
+              {dataContent?.find((item) => item.title === "Tantang Fakultas")
                 ?.value}
             </p>
             <ButtonPrimary
@@ -155,8 +183,11 @@ export default function Home() {
         <h1 className="text-xl lg:text-2xl font-bold text-blue-950">Berita</h1>
         <hr className="border-t-[3px] border-blue-950 w-[20%] md:w-[15%] lg:w-[6%]  mb-5" />
         <div className="flex gap-10 flex-wrap justify-center">
-          <CardBerita />
-          <CardBerita />
+          {
+            dataBerita.map((item, index) => (
+              <CardBerita key={index} img={item.filepath} content={item.description} title={item.title} date={item.uploudat } id={item.id}/>
+            ))
+          }
         </div>
       </div>
 
@@ -179,9 +210,9 @@ export default function Home() {
 
       {/* Kenapa Kami */}
       <div className="flex justify-center items-center py-5 bg-white gap-5 h-fit">
-        <img src="/img/ubg-full.jpg" alt="eror" className=" h-28 md:h-48" />
+        <img data-aos="zoom-in-right" src="/img/ubg-full.jpg" alt="eror" className=" h-28 md:h-48" />
         <div className="h-32 w-[2px] bg-blue-950 mx-2"></div>
-        <img src="/img/banpt.png" alt="eror" className="h-20 md:h-36" />
+        <img data-aos="zoom-in-left" src="/img/banpt.png" alt="eror" className="h-20 md:h-36" />
       </div>
     </div>
   );

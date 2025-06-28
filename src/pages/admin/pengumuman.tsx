@@ -3,6 +3,7 @@ import AdminLayout from "@/components/layouts/AdminLayout";
 import ButtonPrimary from "@/components/elements/ButtonPrimary";
 import FileDropzone from "@/components/admin/elements/FileDropZone";
 import axios from "axios";
+import SuccessAlert from "@/components/cards/AlertSucces";
 
 type Data = {
   id: string;
@@ -16,6 +17,7 @@ export default function Pengumuman() {
   const [datas, setDatas] = useState<Data[] | null>(null);
   const [file, setFile] = useState<File | null>(null);
   const [isConfirm, setisConfirm] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
   const [isUpdate, setIsUpdate] = useState({
     status: false,
     id: "",
@@ -39,6 +41,7 @@ export default function Pengumuman() {
           "Content-Type": "multipart/form-data",
         },
       });
+      setShowAlert(true);
       document.location.reload();
     } catch (error) {
       console.log("ini error", error);
@@ -192,6 +195,12 @@ export default function Pengumuman() {
           ))}
         </tbody>
       </table>
+      <SuccessAlert 
+        show={showAlert} 
+        onClose={() => setShowAlert(false)}
+        message="Data berhasil disimpan ke database!"
+        duration={4000} // Opsional: custom duration
+      />
     </AdminLayout>
   );
 }

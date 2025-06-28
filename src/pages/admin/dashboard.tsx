@@ -16,6 +16,8 @@ import ButtonPrimary from "@/components/elements/ButtonPrimary";
 import Prodis from "@/components/datas/Prodi.json";
 import FileDropzone from "@/components/admin/elements/FileDropZone";
 import axios from "axios";
+import SuccessAlert from "@/components/cards/AlertSucces";
+import { div } from "framer-motion/client";
 
 type VisitData = {
   data: { date: string; count: number }[];
@@ -35,7 +37,6 @@ interface Prodi {
   link: string;
 }
 
-
 const prisma = new PrismaClient();
 
 export const getServerSideProps: GetServerSideProps = async () => {
@@ -53,11 +54,11 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
 export default function Dashboard({ data, rawResults }: VisitData) {
   const [canEdit, setcanEdit] = useState(false);
-  const [dataFak, setdataFak] = useState<string[]>([]);
   const [datas, setDatas] = useState<Identitas[]>([]);
-  const [selectedItems, setSelectedItems] = useState<string[]>([]);
-  const [organisasiImg, setOrganisasiImg] = useState<File | null>(null)
-    // State untuk menyimpan prodi yang dipilih
+  const [organisasiImg, setOrganisasiImg] = useState<File | null>(null);
+  const [showAlert, setShowAlert] = useState(false);
+  const [prodi, setProdi] = useState<Prodi[]>([])
+  // State untuk menyimpan prodi yang dipilih
   const [selectedProdi, setSelectedProdi] = useState<Prodi[]>([]);
   const [dataUpdate, setDataUpdate] = useState([
     {
@@ -98,33 +99,33 @@ export default function Dashboard({ data, rawResults }: VisitData) {
     },
   ]);
 
-const handleOndrop =(file:File)=>{
-  setOrganisasiImg(file);
-}
-const handlePushOrganisasi = async () => {
-  const data = {
-    file: organisasiImg
-  }
-  try {
-    const result = await axios.put("/api/strukturorganisasi", data,{
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
+  const handleOndrop = (file: File) => {
+    setOrganisasiImg(file);
+  };
+  const handlePushOrganisasi = async () => {
+    const data = {
+      file: organisasiImg,
+    };
+    try {
+      const result = await axios.put("/api/strukturorganisasi", data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      setShowAlert(true);
+    } catch (error) {
+      console.log(error, "eror");
     }
-    );
-    console.log(result);
-  } catch (error) {
-    console.log(error, "eror");
-  }
-};
+  };
 
-
-   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const options = e.target.options;
     const selectedOptions: Prodi[] = [];
     for (let i = 0; i < options.length; i++) {
       if (options[i].selected) {
-        const selectedProdi = Prodis.find(item => item.id.toString() === options[i].value);
+        const selectedProdi = Prodis.find(
+          (item) => item.id.toString() === options[i].value
+        );
         if (selectedProdi) {
           const pushData = {
             nama: selectedProdi.name,
@@ -134,16 +135,15 @@ const handlePushOrganisasi = async () => {
         }
       }
     }
-    console.log(selectedOptions);
+  
     setSelectedProdi(selectedOptions);
   };
-
 
   const handleSaveProdi = async () => {
     console.log("ini data yang akan dikirim", selectedProdi);
     try {
-      const result = await axios.post("/api/prodi", selectedProdi);
-      console.log(result);
+      await axios.post("/api/prodi", selectedProdi);
+      setShowAlert(true);
     } catch (error) {
       console.log(error, "eror");
     }
@@ -167,18 +167,26 @@ const handlePushOrganisasi = async () => {
 
   const handleUpdateProfil = async () => {
     try {
-      const result = await axios.put("/api/identitasDetails", dataUpdate);
-      console.log(result);
+      await axios.put("/api/identitasDetails", dataUpdate);
+      setShowAlert(true);
     } catch (error) {
       console.log(error, "eror");
     }
   };
-  
 
 
+  const handleGetProdi = async () => {
+    try {
+      const result = await axios.get("/api/prodi");
+      setProdi(result.data);
+    } catch (error) {
+      console.log(error, "eror");
+    }
+  };
 
   useEffect(() => {
     handleGetData();
+    handleGetProdi()
   }, []);
 
   return (
@@ -186,7 +194,11 @@ const handlePushOrganisasi = async () => {
       <h1 className="text-4xl text-gray-600 ">Dashboard</h1>
       <h2 className="text-2xl text-gray-600 mt-5 mb-2">Profil Fakultas</h2>
       <ButtonPrimary
-        ClassName="mb-5 bg-blue-600 text-white hover:bg-white hover:text-blue-600 hover:border-2 hover:border-blue-600"
+        ClassName={`mb-5 text-white hover:bg-white ${
+          canEdit
+            ? "hover:text-red-600 hover:border-2 hover:border-red-600 bg-red-600"
+            : " hover:text-blue-600 hover:border-2 hover:border-blue-600 bg-blue-600"
+        }`}
         onClick={() => setcanEdit(!canEdit)}
       >
         {canEdit ? "Batal" : "Edit"}
@@ -361,7 +373,7 @@ const handlePushOrganisasi = async () => {
 
         <div className="flex flex-col gap-2 ">
           <label className="block mb-2">Pilih Prodi</label>
-         <select
+          <select
             id="prodi"
             multiple
             disabled={!canEdit}
@@ -378,17 +390,21 @@ const handlePushOrganisasi = async () => {
 
           <div className="mt-4">
             <h2>Daftar Prodi yang Dipilih:</h2>
-               <ul className="mt-2 pl-5 list-disc">
-            {selectedProdi.length > 0 ? (
-              selectedProdi.map((item, index) => (
-                <li key={index} className="text-sm text-gray-600">
-                  {item.nama}
-                </li>
-              ))
-            ) : (
-              <li className="text-sm text-gray-400">Belum ada prodi yang dipilih</li>
-            )}
-          </ul>
+            <ul className="mt-2 pl-5 list-disc">
+              {selectedProdi.length > 0 ? (
+                selectedProdi.map((item, index) => (
+                  <li key={index} className="text-sm text-gray-600">
+                    {item.nama}
+                  </li>
+                ))
+              ) : (
+                prodi.map((item, index) => (
+                  <li key={index} className="text-sm text-gray-600">
+                    {item.nama}
+                  </li>
+                ))
+              ) }
+            </ul>
           </div>
         </div>
         {canEdit && (
@@ -417,12 +433,23 @@ const handlePushOrganisasi = async () => {
           )}
         </div>
         {canEdit && (
-          <ButtonPrimary
-            ClassName="bg-blue-600 text-white hover:bg-white hover:text-blue-600 hover:border-2 hover:border-blue-600 ease-in-out duration-300 transition-all mt-5"
-            onClick={() => handlePushOrganisasi()}
-          >
-            Simpan Struktur Organisasi
-          </ButtonPrimary>
+          <div className="flex flex-col ">
+            <ButtonPrimary
+              ClassName="bg-blue-600 text-white hover:bg-white hover:text-blue-600 hover:border-2 hover:border-blue-600 ease-in-out duration-300 transition-all mt-5"
+              onClick={() => handlePushOrganisasi()}
+            >
+              Simpan Struktur Organisasi
+            </ButtonPrimary>
+            <ButtonPrimary
+              ClassName="bg-green-600 text-white hover:bg-white hover:text-green-600 hover:border-2 hover:border-green-600 ease-in-out duration-300 transition-all mt-5"
+              onClick={() =>{
+                setShowAlert(true)
+                 window.location.reload()
+              }}
+            >
+              Simpan Data
+            </ButtonPrimary>
+          </div>
         )}
       </form>
       {/* Grafik Kunjungan */}
@@ -446,6 +473,13 @@ const handlePushOrganisasi = async () => {
             </LineChart>
           </ResponsiveContainer>
         </div>
+
+        <SuccessAlert
+          show={showAlert}
+          onClose={() => setShowAlert(false)}
+          message="Data berhasil disimpan ke database!"
+          duration={4000} // Opsional: custom duration
+        />
       </div>
     </AdminLayout>
   );

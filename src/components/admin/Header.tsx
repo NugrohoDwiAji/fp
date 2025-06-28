@@ -1,14 +1,28 @@
-import React,{useState, useEffect} from 'react'
+import React from "react";
+import ButtonPrimary from "../elements/ButtonPrimary";
+import axios from "axios";
 
 export default function Header() {
- 
+  const handleLogout = async() => {
+    try {
+     await axios.post("/api/logout");
+      window.location.href = "/";
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
-   <div className="fixed right-0 top-0 left-0 flex justify-end items-center p-5 bg-white">
+    <div className="fixed right-0 top-0 left-0 flex justify-end items-center p-5 bg-white">
       <div className="flex items-center">
         <span className="mr-2">Admin</span>
-        <button className="bg-blue-500 text-white p-2 rounded">Log Out</button>
+        <ButtonPrimary
+          onClick={handleLogout}
+          ClassName="bg-blue-500 text-white p-2 rounded"
+        >
+          Log Out
+        </ButtonPrimary>
       </div>
     </div>
-  )
+  );
 }

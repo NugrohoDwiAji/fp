@@ -24,7 +24,6 @@ export default function ModalEdit({
         title: title,
         value: value,
       });
-      console.log("update", result.data);
       document.location.reload();
     } catch (error) {
       console.log(error);

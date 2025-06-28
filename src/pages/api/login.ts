@@ -26,17 +26,14 @@ export default async function handler(
   const passwordalidate = await bcrypt.compare(password, userData.password);
   if (!passwordalidate)
     return res.status(400).json({ message: "Password salah" });
-
   res.setHeader(
-    "Set-Cookie",
-    `jwt=${jwtToken}; Path="/"; SameSite=Lax; Secure; HttpOnly;`
+    `Set-Cookie`,
+    `jwt=${jwtToken}; Path=/; SameSite=Lax; HttpOnly;  Max-Age=${60 * 60}`
   );
 
-  res
-    .status(200)
-    .json({
-      message: "Login success",
-      token: jwtToken,
-      username: userData.username,
-    });
+  res.status(200).json({
+    message: "Login success",
+    token: jwtToken,
+    username: userData.username,
+  });
 }
