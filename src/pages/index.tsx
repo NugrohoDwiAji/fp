@@ -39,6 +39,12 @@ export default function Home() {
   const [dataBerita, setDataBerita] = useState<DataBerita[]>([]);
   const [dataPengumuman, setDataPengumuman] = useState<PengumumanType[]>([]);
 
+  const truncateText = (text: string, maxLength: number) => {
+    return text.length > maxLength
+      ? text.substring(0, maxLength) + "..."
+      : text;
+  };
+
   const handleGetIdentitas = async () => {
     try {
       const result = await axios.get("/api/identitas");
@@ -93,7 +99,7 @@ export default function Home() {
     <div className="">
       {/* Banner */}
       <div className="bg-[url(/img/bg-kampus.jpg)] h-[18rem] md:h-[31rem] lg:h-[40rem] bg-cover bg-center ">
-        <div className="h-full w-full bg-blue-950/80 flex px-5 md:px-12 lg:px-20 items-center md:justify-between ">
+        <div className="h-full w-full bg-purple-900/70 flex px-5 md:px-12 lg:px-20 items-center md:justify-between ">
           <div className="w-[50%] flex flex-col gap-2 ">
             <h1 className=" font-bold text-white md:text-2xl lg:text-4xl uppercase">
               {identitas?.find((item) => item.name === "Nama Fakultas")?.value}
@@ -121,10 +127,10 @@ export default function Home() {
 
       {/* Tentang Fakultas */}
       <div className="flex flex-col items-center p-5 gap-5 lg:h-[40rem]">
-        <h1 className="text-xl lg:text-2xl font-bold lg:mt-10  text-blue-950">
+        <h1 className="text-xl lg:text-2xl font-bold lg:mt-10  text-purple-900">
           Tentang Fakultas
         </h1>
-        <hr className="border-t-[3px] border-blue-950 w-[50%] md:w-[25%] lg:w-[14%] lg:mb-5 " />
+        <hr className="border-t-[3px] border-purple-900 w-[50%] md:w-[25%] lg:w-[14%] lg:mb-5 " />
         <div className="md:flex gap-5 justify-between lg:px-14 md:h-[28rem] pb-10">
           <div className="h-full flex items-center justify-center w-[40%] ">
             <img
@@ -137,14 +143,17 @@ export default function Home() {
             />
           </div>
           <div className="md:w-[45%] h-full flex flex-col gap-5 justify-center">
-            <p className="text-justify indent-10 max-h-[23rem] truncate text-wrap">
-              {
+            <p className="text-justify indent-10 max-h-[23rem] truncate text-wrap lg:text-lg text-gray-900">
+              {truncateText(
                 dataContent?.find((item) => item.title === "Tantang Fakultas")
-                  ?.value
-              }
+                  ?.value || "",
+              
+                600
+              )}
+             
             </p>
             <ButtonPrimary
-              ClassName="bg-blue-950 text-white hover:text-blue-950 hover:bg-white hover:border-2 hover:border-blue-950 font-semibold ease-in-out duration-300 transition-all"
+              ClassName="bg-purple-900 text-white hover:text-purple-900 hover:bg-white hover:border-2 hover:border-purple-900 font-semibold ease-in-out duration-300 transition-all"
               onClick={() => {}}
             >
               Selengkapnya
@@ -155,23 +164,41 @@ export default function Home() {
 
       {/* Information */}
       <div className="h-fit bg-[url(/img/bg-kampus.jpg)] bg-center bg-cover">
-        <div className="bg-blue-950/95 h-full text-white font-bold flex justify-center items-center gap-6 md:gap-20 lg:gap-36 py-3 md:py-12 px-4 flex-wrap md:flex-row  ">
+        <div className="bg-purple-900/95 h-full text-white font-bold flex justify-center items-center gap-6 md:gap-20 lg:gap-36 py-3 md:py-12 px-4 flex-wrap md:flex-row  ">
           <div className="flex gap-2 items-center md:gap-4">
             <h1 className="text-2xl md:text-5xl lg:text-6xl ">
-              <AnimatedNumber end={Number(identitas?.find((item) => item.name === "Banyak Program Studi")?.value || 0)} duration={4}/>
-              
+              <AnimatedNumber
+                end={Number(
+                  identitas?.find(
+                    (item) => item.name === "Banyak Program Studi"
+                  )?.value || 0
+                )}
+                duration={4}
+              />
             </h1>
             <h1 className="md:text-lg lg:text-2xl">Program Studi</h1>
           </div>
           <div className="flex gap-2 items-center md:gap-4">
             <h1 className="text-2xl md:text-5xl lg:text-6xl ">
-              <AnimatedNumber end={Number(identitas?.find((item) => item.name === "Banyak Dosen")?.value || 0 )} duration={6}/>
+              <AnimatedNumber
+                end={Number(
+                  identitas?.find((item) => item.name === "Banyak Dosen")
+                    ?.value || 0
+                )}
+                duration={6}
+              />
             </h1>
             <h1 className="md:text-lg lg:text-2xl">Lecturer</h1>
           </div>
           <div className="flex gap-2 items-center md:gap-4">
             <h1 className="text-2xl md:text-5xl lg:text-6xl ">
-             <AnimatedNumber end={Number(identitas?.find((item) => item.name === "Banyak Staf")?.value || 0)} duration={6}/>
+              <AnimatedNumber
+                end={Number(
+                  identitas?.find((item) => item.name === "Banyak Staf")
+                    ?.value || 0
+                )}
+                duration={6}
+              />
             </h1>
             <h1 className="md:text-lg lg:text-2xl">Staf</h1>
           </div>
@@ -180,8 +207,10 @@ export default function Home() {
 
       {/* Berita */}
       <div className="flex flex-col items-center py-5 lg:py-10 bg-white gap-5 h-fit">
-        <h1 className="text-xl lg:text-2xl font-bold text-blue-950">Berita</h1>
-        <hr className="border-t-[3px] border-blue-950 w-[20%] md:w-[15%] lg:w-[6%]  mb-5" />
+        <h1 className="text-xl lg:text-2xl font-bold text-purple-900">
+          Berita
+        </h1>
+        <hr className="border-t-[3px] border-purple-900 w-[20%] md:w-[15%] lg:w-[6%]  mb-5" />
         <div className="flex gap-10 flex-wrap justify-center">
           {dataBerita.map((item, index) => (
             <CardBerita
@@ -198,7 +227,7 @@ export default function Home() {
 
       {/* Information */}
       <div className="h-fit bg-[url(/img/bg-kampus.jpg)] bg-center bg-cover">
-        <div className="bg-blue-950/95 h-full flex justify-center items-center gap-6 md:gap-20 lg:gap-36 py-3 md:py-12 px-4 flex-wrap md:flex-row  ">
+        <div className="bg-purple-900/95 h-full flex justify-center items-center gap-6 md:gap-20 lg:gap-36 py-3 md:py-12 px-4 flex-wrap md:flex-row  ">
           <div className="flex flex-col items-center">
             <h1 className="text-xl lg:text-2xl font-bold text-white">
               Pengumuman
@@ -221,7 +250,7 @@ export default function Home() {
           alt="eror"
           className=" h-28 md:h-48"
         />
-        <div className="h-32 w-[2px] bg-blue-950 mx-2"></div>
+        <div className="h-32 w-[2px] bg-purple-900 mx-2"></div>
         <img
           data-aos="zoom-in-left"
           src="/img/banpt.png"

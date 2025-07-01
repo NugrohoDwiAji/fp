@@ -10,6 +10,6 @@ type Props = {
 }
 export default function MenuSidebar({link,text, className, icon}: Props)  {
   return (
-    <a href={link} className={clsx('w-full  rounded-xl py-3 px-5 font-semibold flex gap-2 hover:bg-blue-600/20 hover:text-blue-600 hover:scale-105 hover:shadow-2xl ease-in-out duration-300 transition-all', className)}>{icon}{text}</a>
+    <a href={link} className={clsx('w-full  rounded-xl py-3 px-5 font-semibold flex gap-2 hover:bg-purple-600/20 hover:text-purple-600 hover:scale-105 hover:shadow-2xl ease-in-out duration-300 transition-all', className)}>{icon}{text}</a>
   )
 }

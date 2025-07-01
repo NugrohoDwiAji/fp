@@ -82,7 +82,7 @@ export default function Berita() {
       <h1 className="text-4xl text-gray-600 ">Berita</h1>
       <div className="flex gap-5">
         <ButtonPrimary
-          ClassName="text-white bg-blue-600 hover:bg-white hover:text-blue-600 hover:border-2 hover:border-blue-600 ease-in-out duration-300 transition-all mt-5"
+          ClassName="text-white bg-purple-600 hover:bg-white hover:text-purple-600 hover:border-2 hover:border-purple-600 ease-in-out duration-300 transition-all mt-5"
           onClick={() => setIsInput(!isInput)}
         >
           {isInput ? "Batal" : "Input Berita"}
@@ -109,7 +109,7 @@ export default function Berita() {
                 onChange={(e) =>
                   setPushData({ ...pushData, title: e.target.value })
                 }
-                className="bg-white p-2 focus:outline-blue-600 rounded-lg outline-blue-100 outline-2"
+                className="bg-white p-2 focus:outline-purple-600 rounded-lg outline-purple-100 outline-2"
               />
             </div>
             <div className="flex items-center gap-5 ">
@@ -120,7 +120,7 @@ export default function Berita() {
                 onChange={(e) =>
                   setPushData({ ...pushData, description: e.target.value })
                 }
-                className="bg-white h-40 p-2 focus:outline-blue-600 rounded-lg outline-blue-100 outline-2 w-96 "
+                className="bg-white h-40 p-2 focus:outline-purple-600 rounded-lg outline-purple-100 outline-2 w-96 "
               ></textarea>
             </div>
           </div>
@@ -130,22 +130,22 @@ export default function Berita() {
       <table className="table-fixed border-collapse mt-10  m-auto rounded-2xl">
         <thead className="text-white">
           <tr className="">
-            <th className="lg:w-10 py-2 bg-blue-600 rounded-tl-md border-xl border-gray-300 ">
+            <th className="lg:w-10 py-2 bg-purple-600 rounded-tl-md border-xl border-gray-300 ">
               No
             </th>
-            <th className=" lg:w-60 bg-blue-600 border-x border-gray-300 ">
+            <th className=" lg:w-60 bg-purple-600 border-x border-gray-300 ">
               Judul Berita
             </th>
-            <th className=" lg:w-2xl bg-blue-600 border-x border-gray-300 ">
+            <th className=" lg:w-2xl bg-purple-600 border-x border-gray-300 ">
               Deskripsi
             </th>
-            <th className=" lg:w-2xl bg-blue-600 border-x border-gray-300 ">
+            <th className=" lg:w-2xl bg-purple-600 border-x border-gray-300 ">
               Gambar
             </th>
-            <th className=" lg:w-2xl bg-blue-600 border-x border-gray-300 ">
+            <th className=" lg:w-2xl bg-purple-600 border-x border-gray-300 ">
               Tanggal Upload
             </th>
-            <th className=" lg:w-56 bg-blue-600 rounded-tr-md border-gray-300 ">
+            <th className=" lg:w-56 bg-purple-600 rounded-tr-md border-gray-300 ">
               Action
             </th>
           </tr>
@@ -153,17 +153,17 @@ export default function Berita() {
         <tbody>
           {dataBerita.map((item, index) => (
             <tr className="border-b border-x border-gray-300">
-              <td className="py-2 text-center bg-blue-100">{index + 1}</td>
-              <td className="py-2 px-2 border-x border-gray-300 bg-blue-100">
+              <td className="py-2 text-center bg-purple-100">{index + 1}</td>
+              <td className="py-2 px-2 border-x border-gray-300 bg-purple-100">
                 {item.title}
               </td>
-              <td className="py-2 px-2 border-x border-gray-300 bg-blue-100">
+              <td className="py-2 px-2 border-x border-gray-300 bg-purple-100">
                 {item.description}
               </td>
-              <td className="py-2 px-2 border-x border-gray-300 bg-blue-100">
+              <td className="py-2 px-2 border-x border-gray-300 bg-purple-100">
                 {item.filepath}
               </td>
-              <td className="py-2 px-2 border-x border-gray-300 bg-blue-100">
+              <td className="py-2 px-2 border-x border-gray-300 bg-purple-100">
                 {
                   (item.uploudat = format(
                     new Date(item.uploudat),
@@ -171,7 +171,7 @@ export default function Berita() {
                   ))
                 }
               </td>
-              <td className="bg-blue-100 border-b border-gray-300">
+              <td className="bg-purple-100 border-b border-gray-300">
                 <div className="py-2 text-center  flex gap-5 justify-center  ">
                   <ButtonPrimary
                     ClassName="bg-yellow-500 text-white"

@@ -110,7 +110,7 @@ export default function Berkas() {
         Penginputan Berkas
       </h1>
       <ButtonPrimary
-        ClassName="hover:border-dashed hover:border-2 bg-blue-600 hover:border-blue-600 mt-5 hover:text-blue-600 hover:bg-white  text-white font-semibold "
+        ClassName="hover:border-dashed hover:border-2 bg-purple-600 hover:border-purple-600 mt-5 hover:text-purple-600 hover:bg-white  text-white font-semibold "
         onClick={() => setIsInput(!isInput)}
       >
         {isInput ? "Close" : "Input"}
@@ -123,7 +123,7 @@ export default function Berkas() {
               type="text"
               value={title}
               id="title"
-              className="p-2 bg-white h-10  rounded-md border-2 border-blue-400  font-bold focus:outline-blue-600"
+              className="p-2 bg-white h-10  rounded-md border-2 border-purple-400  font-bold focus:outline-purple-600"
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
@@ -134,7 +134,7 @@ export default function Berkas() {
         <div className="flex gap-5 w-full justify-center mt-5">
           <ButtonPrimary
             onClick={()=>{isUpdate.status? handleUpdate(isUpdate.id) :handleSave() }}
-            ClassName="bg-blue-600 text-white"
+            ClassName="bg-purple-600 text-white"
           >
             Simpan
           </ButtonPrimary>
@@ -152,13 +152,13 @@ export default function Berkas() {
       <table className="table-fixed border-collapse mt-10 m-auto rounded-2xl">
         <thead className="text-white">
           <tr className="">
-            <th className="lg:w-10 py-2 bg-blue-500 rounded-tl-md border-r border-gray-300 ">
+            <th className="lg:w-10 py-2 bg-purple-500 rounded-tl-md border-r border-gray-300 ">
               No
             </th>
-            <th className=" lg:w-4xl bg-blue-500 border-x border-gray-300 ">
+            <th className=" lg:w-4xl bg-purple-500 border-x border-gray-300 ">
               Title
             </th>
-            <th className=" lg:w-80 bg-blue-500 rounded-tr-md border-gray-300 ">
+            <th className=" lg:w-80 bg-purple-500 rounded-tr-md border-gray-300 ">
               Action
             </th>
           </tr>
@@ -166,14 +166,14 @@ export default function Berkas() {
         {data.map((item, index) => (
           <tbody key={index}>
             <tr>
-              <td className="py-2 text-center bg-blue-100 border-b border-gray-300">
+              <td className="py-2 text-center bg-purple-100 border-b border-gray-300">
                 {index + 1}
               </td>
 
-              <td className="py-2 px-2 border-x  bg-blue-100 border-b border-gray-300">
+              <td className="py-2 px-2 border-x  bg-purple-100 border-b border-gray-300">
                 {item.title}
               </td>
-              <td className="py-2 text-center bg-blue-100 border-b border-gray-300 flex gap-5 justify-center">
+              <td className="py-2 text-center bg-purple-100 border-b border-gray-300 flex gap-5 justify-center">
                 <ButtonPrimary
                   ClassName="bg-yellow-500 text-white"
                   onClick={() => handleGetElementById(item.id)}

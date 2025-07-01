@@ -78,7 +78,7 @@ const handleGetProdi = async () => {
     handleGetProdi();
   }, [])
   return (
-    <footer className="bg-blue-950 text-white flex flex-col items-center">
+    <footer className="bg-purple-900 text-white flex flex-col items-center">
       <div className="md:flex justify-between md:gap-16 px-7 pt-5 md:pt-14 md:px-10 pb-10 lg:flex gap-28 lg:text-xl lg:gap-0 lg:w-7xl">
         {/* alamat dan logo */}
         <div>
@@ -123,7 +123,7 @@ const handleGetProdi = async () => {
               <Link
                 key={index}
                 href={item.url}
-                className="border p-2 rounded-full hover:text-blue-950 hover:bg-white hover:cursor-pointer"
+                className="border p-2 rounded-full hover:text-purple-900 hover:bg-white hover:cursor-pointer"
               >
                 {item.icon}
               </Link>
@@ -133,7 +133,7 @@ const handleGetProdi = async () => {
       </div>
       <div className="w-[80%]">
         <hr />
-        <h1 className="text-center py-4">Designed suport By Nugroho Dwi Aji. Develop and Modify by PUSTIK UBG</h1>
+        <h1 className="text-center py-4">© 2025 PUSTIK | Developed & Deployed by Nugroho Dwi Aji | Built with Next.js</h1>
       </div>
     </footer>
   );

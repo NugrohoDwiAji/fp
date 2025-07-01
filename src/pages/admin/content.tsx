@@ -54,16 +54,16 @@ const handleEdit = async (id: string) =>{
       <table className="table-fixed border-collapse mt-10  m-auto rounded-2xl">
         <thead className="text-white">
           <tr className="">
-            <th className="lg:w-10 py-2 bg-blue-600 rounded-tl-md border-xl border-gray-300 ">
+            <th className="lg:w-10 py-2 bg-purple-600 rounded-tl-md border-xl border-gray-300 ">
               No
             </th>
-            <th className=" lg:w-60 bg-blue-600 border-x border-gray-300 ">
+            <th className=" lg:w-60 bg-purple-600 border-x border-gray-300 ">
               Title
             </th>
-            <th className=" lg:w-2xl bg-blue-600 border-x border-gray-300 ">
+            <th className=" lg:w-2xl bg-purple-600 border-x border-gray-300 ">
               Value
             </th>
-            <th className=" lg:w-56 bg-blue-600 rounded-tr-md border-gray-300 ">
+            <th className=" lg:w-56 bg-purple-600 rounded-tr-md border-gray-300 ">
               Action
             </th>
           </tr>
@@ -71,14 +71,14 @@ const handleEdit = async (id: string) =>{
         <tbody>
           {data?.map((item, index) => (
             <tr key={index} className="border-b border-x border-gray-300">
-              <td className="py-2 text-center bg-blue-100">{index + 1}</td>
-              <td className="py-2 px-2 border-x border-gray-300 bg-blue-100">
+              <td className="py-2 text-center bg-purple-100">{index + 1}</td>
+              <td className="py-2 px-2 border-x border-gray-300 bg-purple-100">
                 {item?.title}
               </td>
-              <td className="py-2 px-2 border-x border-gray-300 bg-blue-100">
+              <td className="py-2 px-2 border-x border-gray-300 bg-purple-100">
                 {item?.value}
               </td>
-              <td className="py-2 text-center bg-blue-100">
+              <td className="py-2 text-center bg-purple-100">
                 <ButtonPrimary
                   ClassName="bg-yellow-500 text-white"
                   onClick={() => handleEdit(item?.id)}

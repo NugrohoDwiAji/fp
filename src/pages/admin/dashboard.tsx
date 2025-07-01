@@ -197,7 +197,7 @@ export default function Dashboard({ data, rawResults }: VisitData) {
         ClassName={`mb-5 text-white hover:bg-white ${
           canEdit
             ? "hover:text-red-600 hover:border-2 hover:border-red-600 bg-red-600"
-            : " hover:text-blue-600 hover:border-2 hover:border-blue-600 bg-blue-600"
+            : " hover:text-purple-600 hover:border-2 hover:border-purple-600 bg-purple-600"
         }`}
         onClick={() => setcanEdit(!canEdit)}
       >
@@ -221,7 +221,7 @@ export default function Dashboard({ data, rawResults }: VisitData) {
                   handleChangeData("Nama Fakultas", e.target.value)
                 }
                 type="text"
-                className="bg-white p-2 rounded-lg focus:outline-blue-500 outline-2 outline-blue-100 w-60"
+                className="bg-white p-2 rounded-lg focus:outline-purple-500 outline-2 outline-purple-100 w-60"
               />
             </div>
             <div className="flex gap-2 items-center ">
@@ -241,7 +241,7 @@ export default function Dashboard({ data, rawResults }: VisitData) {
                   handleChangeData("Banyak Program Studi", e.target.value)
                 }
                 type="number"
-                className="bg-white p-2 rounded-lg focus:outline-blue-500 outline-2 outline-blue-100 w-14"
+                className="bg-white p-2 rounded-lg focus:outline-purple-500 outline-2 outline-purple-100 w-14"
               />
             </div>
             <div className="flex gap-2 items-center ">
@@ -259,7 +259,7 @@ export default function Dashboard({ data, rawResults }: VisitData) {
                   handleChangeData("Banyak Dosen", e.target.value)
                 }
                 type="number"
-                className="bg-white p-2 rounded-lg focus:outline-blue-500 outline-2 outline-blue-100 w-14"
+                className="bg-white p-2 rounded-lg focus:outline-purple-500 outline-2 outline-purple-100 w-14"
               />
             </div>
             <div className="flex gap-2 items-center  ">
@@ -277,7 +277,7 @@ export default function Dashboard({ data, rawResults }: VisitData) {
                 onChange={(e) =>
                   handleChangeData("Banyak Staf", e.target.value)
                 }
-                className="bg-white p-2 rounded-lg focus:outline-blue-500 outline-2 outline-blue-100 w-14"
+                className="bg-white p-2 rounded-lg focus:outline-purple-500 outline-2 outline-purple-100 w-14"
               />
             </div>
           </div>
@@ -297,7 +297,7 @@ export default function Dashboard({ data, rawResults }: VisitData) {
                 onChange={(e) =>
                   handleChangeData("No Handphone", e.target.value)
                 }
-                className="bg-white p-2 rounded-lg focus:outline-blue-500 outline-2 outline-blue-100"
+                className="bg-white p-2 rounded-lg focus:outline-purple-500 outline-2 outline-purple-100"
               />
             </div>
             <div className="flex gap-2 items-cente ">
@@ -312,7 +312,7 @@ export default function Dashboard({ data, rawResults }: VisitData) {
                 }
                 type="email"
                 onChange={(e) => handleChangeData("Email", e.target.value)}
-                className="bg-white p-2 rounded-lg focus:outline-blue-500 outline-2 outline-blue-100"
+                className="bg-white p-2 rounded-lg focus:outline-purple-500 outline-2 outline-purple-100"
               />
             </div>
             <div className="flex gap-2 items-cente ">
@@ -327,7 +327,7 @@ export default function Dashboard({ data, rawResults }: VisitData) {
                 }
                 onChange={(e) => handleChangeData("Instagram", e.target.value)}
                 type="text"
-                className="bg-white p-2 rounded-lg focus:outline-blue-500 outline-2 outline-blue-100"
+                className="bg-white p-2 rounded-lg focus:outline-purple-500 outline-2 outline-purple-100"
               />
             </div>
             <div className="flex gap-2 items-cente ">
@@ -342,7 +342,7 @@ export default function Dashboard({ data, rawResults }: VisitData) {
                 }
                 onChange={(e) => handleChangeData("Facebook", e.target.value)}
                 type="text"
-                className="bg-white p-2 rounded-lg focus:outline-blue-500 outline-2 outline-blue-100"
+                className="bg-white p-2 rounded-lg focus:outline-purple-500 outline-2 outline-purple-100"
               />
             </div>
             <div className="flex gap-2 items-cente ">
@@ -357,14 +357,14 @@ export default function Dashboard({ data, rawResults }: VisitData) {
                 }
                 onChange={(e) => handleChangeData("Youtube", e.target.value)}
                 type="text"
-                className="bg-white p-2 rounded-lg focus:outline-blue-500 outline-2 outline-blue-100"
+                className="bg-white p-2 rounded-lg focus:outline-purple-500 outline-2 outline-purple-100"
               />
             </div>
           </div>
         </div>
         {canEdit && (
           <ButtonPrimary
-            ClassName="bg-blue-600 text-white hover:bg-white hover:text-blue-600 hover:border-2 hover:border-blue-600 ease-in-out duration-300 transition-all mt-10 mb-5"
+            ClassName="bg-purple-600 text-white hover:bg-white hover:text-purple-600 hover:border-2 hover:border-purple-600 ease-in-out duration-300 transition-all mt-10 mb-5"
             onClick={() => handleUpdateProfil()}
           >
             Simpan Profil
@@ -409,7 +409,7 @@ export default function Dashboard({ data, rawResults }: VisitData) {
         </div>
         {canEdit && (
           <ButtonPrimary
-            ClassName="bg-blue-600 text-white hover:bg-white hover:text-blue-600 hover:border-2 hover:border-blue-600 ease-in-out duration-300 transition-all mb-5 mt-5"
+            ClassName="bg-purple-600 text-white hover:bg-white hover:text-purple-600 hover:border-2 hover:border-purple-600 ease-in-out duration-300 transition-all mb-5 mt-5"
             onClick={() => handleSaveProdi()}
           >
             Simpan Prodi
@@ -435,7 +435,7 @@ export default function Dashboard({ data, rawResults }: VisitData) {
         {canEdit && (
           <div className="flex flex-col ">
             <ButtonPrimary
-              ClassName="bg-blue-600 text-white hover:bg-white hover:text-blue-600 hover:border-2 hover:border-blue-600 ease-in-out duration-300 transition-all mt-5"
+              ClassName="bg-purple-600 text-white hover:bg-white hover:text-purple-600 hover:border-2 hover:border-purple-600 ease-in-out duration-300 transition-all mt-5"
               onClick={() => handlePushOrganisasi()}
             >
               Simpan Struktur Organisasi
@@ -454,7 +454,7 @@ export default function Dashboard({ data, rawResults }: VisitData) {
       </form>
       {/* Grafik Kunjungan */}
       <div className="bg-white rounded-xl mt-10 ">
-        <h1 className="bg-blue-200 p-5 rounded-t-xl text-blue-500 font-bold">
+        <h1 className="bg-purple-200 p-5 rounded-t-xl text-purple-500 font-bold">
           Grafik Kunjungan
         </h1>
         <div className="pr-10 py-10 ">
@@ -467,7 +467,7 @@ export default function Dashboard({ data, rawResults }: VisitData) {
               <Line
                 type="monotone"
                 dataKey="count"
-                stroke="#0070f3"
+                stroke="#9810fa"
                 strokeWidth={2}
               />
             </LineChart>
