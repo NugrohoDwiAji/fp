@@ -57,7 +57,7 @@ export default function Dashboard({ data, rawResults }: VisitData) {
   const [datas, setDatas] = useState<Identitas[]>([]);
   const [organisasiImg, setOrganisasiImg] = useState<File | null>(null);
   const [showAlert, setShowAlert] = useState(false);
-  const [prodi, setProdi] = useState<Prodi[]>([])
+  const [prodi, setProdi] = useState<Prodi[]>([]);
   // State untuk menyimpan prodi yang dipilih
   const [selectedProdi, setSelectedProdi] = useState<Prodi[]>([]);
   const [dataUpdate, setDataUpdate] = useState([
@@ -135,12 +135,11 @@ export default function Dashboard({ data, rawResults }: VisitData) {
         }
       }
     }
-  
+
     setSelectedProdi(selectedOptions);
   };
 
   const handleSaveProdi = async () => {
-    console.log("ini data yang akan dikirim", selectedProdi);
     try {
       await axios.post("/api/prodi", selectedProdi);
       setShowAlert(true);
@@ -167,18 +166,34 @@ export default function Dashboard({ data, rawResults }: VisitData) {
 
   const handleUpdateProfil = async () => {
     try {
-      await axios.put("/api/identitasDetails", dataUpdate);
+      const finalData = datas.map((item) => {
+        const updatedItem = dataUpdate.find((d) => d.name === item.name);
+        return {
+          name: item.name,
+          value: updatedItem?.value || item.value, // pakai value lama jika tidak diubah
+        };
+      });
+
+      await axios.put("/api/identitasDetails", finalData);
       setShowAlert(true);
     } catch (error) {
       console.log(error, "eror");
     }
   };
-
+  const handleClearProdi = async () => {
+    try {
+      await axios.delete("/api/prodi");
+      setShowAlert(true);
+    }catch (error) {
+      console.log(error, "eror");
+    }
+  }
 
   const handleGetProdi = async () => {
     try {
       const result = await axios.get("/api/prodi");
       setProdi(result.data);
+      
     } catch (error) {
       console.log(error, "eror");
     }
@@ -186,7 +201,7 @@ export default function Dashboard({ data, rawResults }: VisitData) {
 
   useEffect(() => {
     handleGetData();
-    handleGetProdi()
+    handleGetProdi();
   }, []);
 
   return (
@@ -213,7 +228,7 @@ export default function Dashboard({ data, rawResults }: VisitData) {
               <input
                 readOnly={!canEdit}
                 value={
-                  dataUpdate.find((item) => item.name === "Nama Fakultas")
+                  dataUpdate?.find((item) => item.name === "Nama Fakultas")
                     ?.value ||
                   datas.find((item) => item.name === "Nama Fakultas")?.value
                 }
@@ -391,29 +406,35 @@ export default function Dashboard({ data, rawResults }: VisitData) {
           <div className="mt-4">
             <h2>Daftar Prodi yang Dipilih:</h2>
             <ul className="mt-2 pl-5 list-disc">
-              {selectedProdi.length > 0 ? (
-                selectedProdi.map((item, index) => (
-                  <li key={index} className="text-sm text-gray-600">
-                    {item.nama}
-                  </li>
-                ))
-              ) : (
-                prodi.map((item, index) => (
-                  <li key={index} className="text-sm text-gray-600">
-                    {item.nama}
-                  </li>
-                ))
-              ) }
+              {selectedProdi.length > 0
+                ? selectedProdi.map((item, index) => (
+                    <li key={index} className="text-sm text-gray-600">
+                      {item.nama}
+                    </li>
+                  ))
+                : prodi.map((item, index) => (
+                    <li key={index} className="text-sm text-gray-600">
+                      {item.nama}
+                    </li>
+                  ))}
             </ul>
           </div>
         </div>
         {canEdit && (
+          <div className="flex gap-5">
           <ButtonPrimary
             ClassName="bg-purple-600 text-white hover:bg-white hover:text-purple-600 hover:border-2 hover:border-purple-600 ease-in-out duration-300 transition-all mb-5 mt-5"
             onClick={() => handleSaveProdi()}
           >
             Simpan Prodi
           </ButtonPrimary>
+          <ButtonPrimary
+            ClassName="bg-red-600 text-white hover:bg-white hover:text-red-600 hover:border-2 hover:border-red-600 ease-in-out duration-300 transition-all mb-5 mt-5"
+            onClick={() => handleClearProdi()}
+          >
+            Clear Prodi
+          </ButtonPrimary>
+          </div>
         )}
         <div className=" mt-10">
           <h1>Struktur Organisasi</h1>
@@ -442,9 +463,9 @@ export default function Dashboard({ data, rawResults }: VisitData) {
             </ButtonPrimary>
             <ButtonPrimary
               ClassName="bg-green-600 text-white hover:bg-white hover:text-green-600 hover:border-2 hover:border-green-600 ease-in-out duration-300 transition-all mt-5"
-              onClick={() =>{
-                setShowAlert(true)
-                 window.location.reload()
+              onClick={() => {
+                setShowAlert(true);
+                window.location.reload();
               }}
             >
               Simpan Data
@@ -477,7 +498,7 @@ export default function Dashboard({ data, rawResults }: VisitData) {
         <SuccessAlert
           show={showAlert}
           onClose={() => setShowAlert(false)}
-          message="Data berhasil disimpan ke database!"
+          message="Data berhasil di ubah...!"
           duration={4000} // Opsional: custom duration
         />
       </div>

@@ -22,11 +22,11 @@ export default function CardBerkas({title, link}: Props) {
      data-aos-duration="2000"
       download={title}
       href={link}
-      className="bg-gray-400 p-4 flex gap-2 items-center rounded-lg h-fit w-fit hover:scale-105 duration-300 hover:shadow-lg hover:bg-gray-300 ease-in-out transition-all"
+      className="bg-purple-300 p-4 flex gap-2 items-center rounded-lg h-fit w-fit hover:scale-105 duration-300 hover:shadow-lg hover:bg-purple-300 ease-in-out transition-all"
     >
-      <FileDown size={32}/>
+      <FileDown size={32} className="text-purple-900"/>
       <div className="h-10 bg-blue-950 w-[2px]"></div>
-      <h1 className="text-gray-900 font-semibold">{title}</h1>
+      <h1 className="text-purple-900 font-semibold">{title}</h1>
     </a>
   );
 }

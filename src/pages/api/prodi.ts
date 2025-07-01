@@ -27,6 +27,15 @@ const handlegetMethod = async (req: NextApiRequest, res: NextApiResponse) => {
     }
 }
 
+const handleDeleteMethod = async (req: NextApiRequest, res: NextApiResponse) => {
+
+    try {
+        const result = await prisma.prodi.deleteMany();
+        res.status(200).json(result);
+    } catch (error) {
+        res.status(500).json({ error: "Error Deleting content" });
+    }
+}
 
 
 
@@ -37,6 +46,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     }
     if(req.method === "GET") {
         return handlegetMethod(req, res);
+    }
+    if(req.method === "DELETE") {
+        return handleDeleteMethod(req, res);
     }
     else {
         res.status(405).json({ message: "Method not allowed" });

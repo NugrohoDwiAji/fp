@@ -36,7 +36,7 @@ useEffect(() => {
           className="w-full bg-cover h-full"
         />
       </div>
-        <div className="text-purple-900 text-center mt-10">
+        <div className="text-purple-900 text-center mt-10 mb-5">
           <h1 className=" text-3xl md:text-4xl lg:text-6xl font-bold">
             Unduhan
           </h1>

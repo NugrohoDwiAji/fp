@@ -27,8 +27,8 @@ export default function CardPengumuman({ title, file_path, uploadat}: Props) {
       <hr className="border-t-2 border-gray-800 w-full" />
       <div className="flex gap-2 justify-center items-center h-1/2 px-4 py-2">
         <h2 className="font-semibold ">{uploadat=format(new Date(uploadat), "yyyy-MM-dd")}</h2>
-        <div className="h-9 w-[2px] bg-blue-950"></div>
-        <a href={file_path} download={title} className="py-2 px-4 rounded-lg hover:scale-105 ease-in-out duration-300 bg-blue-950 hover:bg-white hover:text-blue-950 hover:border-2 hover:border-blue-950 text-white">Unduh</a>
+        <div className="h-9 w-[2px] bg-purple-950"></div>
+        <a href={file_path} download={title} className="py-2 px-4 rounded-lg hover:scale-105 ease-in-out duration-300 bg-purple-950 hover:bg-white hover:text-purple-950 hover:border-2 hover:border-purple-950 text-white">Unduh</a>
       </div>
     </div>
   );
