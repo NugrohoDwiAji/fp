@@ -147,7 +147,7 @@ export default function Home() {
           <div className="md:w-[45%] h-full flex flex-col gap-5 justify-center">
             <p className="text-justify indent-10 max-h-[23rem] truncate text-wrap lg:text-lg text-gray-900">
               {truncateText(
-                dataContent?.find((item) => item.title === "Tantang Fakultas")
+                dataContent?.find((item) => item.title === "Tentang Fakultas")
                   ?.value || "",
               
                 600

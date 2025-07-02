@@ -43,7 +43,7 @@ const [dataContent, setdataContent] = useState<ContentType[]>([])
         <p className="indent-10 text-gray-900 mt-5 mb-10 text-justify lg:text-lg">
            {
 
-                dataContent?.find((item) => item.title === "Tantang Fakultas")
+                dataContent?.find((item) => item.title === "Tentang Fakultas")
                   ?.value
               }
         </p>

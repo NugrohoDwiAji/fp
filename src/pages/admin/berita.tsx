@@ -61,7 +61,7 @@ export default function Berita() {
 
   const handleDeleteBerita = async (id: string) => {
     try {
-      await axios.delete(`/api/berita?id=${id}`);
+      await axios.delete(`/api/beritaDetails?id=${id}`);
       setShowAlert(true);
       window.location.reload();
     } catch (error) {

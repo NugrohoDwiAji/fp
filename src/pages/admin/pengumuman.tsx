@@ -84,7 +84,6 @@ export default function Pengumuman() {
         status: true,
         id: result.data.id,
       }));
-      console.log(result.data);
       setTitle(result.data.title);
       setFile(result.data.file_path);
     } catch (error) {
@@ -104,7 +103,8 @@ export default function Pengumuman() {
   useEffect(() => {
     handleGetMethode();
   }, []);
-  console.log("ini data", file);
+
+  
   return (
     <AdminLayout>
       <h1 className="text-4xl text-gray-600 ">Pengumuman</h1>
