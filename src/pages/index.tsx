@@ -6,6 +6,7 @@ import CardPengumuman from "@/components/cards/CardPengumuman";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import AnimatedNumber from "@/components/elements/AnimatedNumber";
+import { useRouter } from "next/router";
 
 type ContentType = {
   id: string;
@@ -38,6 +39,7 @@ export default function Home() {
   const [identitas, setIdentitas] = useState<IdentitasType[]>([]);
   const [dataBerita, setDataBerita] = useState<DataBerita[]>([]);
   const [dataPengumuman, setDataPengumuman] = useState<PengumumanType[]>([]);
+  const router = useRouter();
 
   const truncateText = (text: string, maxLength: number) => {
     return text.length > maxLength
@@ -98,9 +100,9 @@ export default function Home() {
   return (
     <div className="">
       {/* Banner */}
-      <div className="bg-[url(/img/bg-kampus.jpg)] h-[18rem] md:h-[31rem] lg:h-[40rem] bg-cover bg-center ">
-        <div className="h-full w-full bg-purple-900/70 flex px-5 md:px-12 lg:px-20 items-center md:justify-between ">
-          <div className="w-[50%] flex flex-col gap-2 ">
+      <div className="bg-[url(/img/banner-pasca.png)] h-[18rem] md:h-[31rem] lg:h-[40rem] bg-cover md:bg-center bg-right">
+        <div className="h-full w-full flex px-5 md:px-12 lg:px-20 items-center md:justify-between ">
+          <div className="w-[50%] flex flex-col gap-2 -mt-9 md:-mt-20 lg:-mt-36">
             <h1 className=" font-bold text-white md:text-2xl lg:text-4xl uppercase">
               {identitas?.find((item) => item.name === "Nama Fakultas")?.value}
               <br /> UNIVERSITAS BUMIGORA
@@ -154,7 +156,7 @@ export default function Home() {
             </p>
             <ButtonPrimary
               ClassName="bg-purple-900 text-white hover:text-purple-900 hover:bg-white hover:border-2 hover:border-purple-900 font-semibold ease-in-out duration-300 transition-all"
-              onClick={() => {}}
+              onClick={() => router.push("/informasi")}
             >
               Selengkapnya
             </ButtonPrimary>
