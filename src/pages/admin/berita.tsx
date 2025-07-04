@@ -6,7 +6,6 @@ import { form, tr } from "framer-motion/client";
 import axios from "axios";
 import { format } from "date-fns";
 import SuccessAlert from "@/components/cards/AlertSucces";
-import { se } from "date-fns/locale";
 
 type DataBerita = {
   id: string;
@@ -19,6 +18,7 @@ type DataBerita = {
 type PushData = {
   title: string;
   description: string;
+  tanggal:Date;
 };
 
 export default function Berita() {
@@ -28,6 +28,7 @@ export default function Berita() {
   const [pushData, setPushData] = useState<PushData>({
     title: "",
     description: "",
+    tanggal: new Date(),
   });
   const [file, setFile] = useState<File | null>(null);
 
@@ -45,9 +46,10 @@ export default function Berita() {
       title: pushData.title,
       description: pushData.description,
       file: file,
+      tanggal: pushData.tanggal
     };
     try {
-      const result = await axios.post("/api/berita", data, {
+       await axios.post("/api/berita", data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -122,6 +124,10 @@ export default function Berita() {
                 }
                 className="bg-white h-40 p-2 focus:outline-purple-600 rounded-lg outline-purple-100 outline-2 w-96 "
               ></textarea>
+            </div>
+            <div className="flex items-center gap-5 ">
+              <label htmlFor="" >Tanggal</label>
+              <input type="date" onChange={(e) => setPushData({ ...pushData, tanggal:new Date(e.target.value)})} className="bg-white p-2 focus:outline-purple-600 rounded-lg outline-purple-100 outline-2" />
             </div>
           </div>
         </div>

@@ -18,10 +18,12 @@ const createUploadDir = (dir: string) => {
 };
 
 const handlePostMethod = async (req: NextApiRequest, res: NextApiResponse) => {
-    createUploadDir(path.join(process.cwd(), "/public/berkas"));
+
+    const uploadPath = "/home/pasca/uploads/berkas";
+    createUploadDir(uploadPath);
     
   const form = formidable({
-    uploadDir: path.join(process.cwd(), "public", "berkas"),
+    uploadDir: uploadPath,
     filename: (_, __, part, ___) => {
       return `${part.originalFilename}`;
     },
@@ -46,7 +48,7 @@ const handlePostMethod = async (req: NextApiRequest, res: NextApiResponse) => {
     if (!files.file) return res.status(400).json({ error: "File tidak ditemukan" });
 
     const file = Array.isArray(files.file) ? files.file[0] : files.file;
-    const filePath = `/berkas/${file?.originalFilename}`;
+    const filePath = `/uploads/berkas/${file?.originalFilename}`;
     const titletmp = fields.title?.toString();
     const title = titletmp || "utitled";
 

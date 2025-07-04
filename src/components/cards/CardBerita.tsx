@@ -39,7 +39,7 @@ const truncateText = (text: string, maxLength: number) => {
       <div>
         <h1 className="font-bold text-lg">{title}</h1>
         <p className="text-wrap overflow-hidden max-h-28">
-          {truncateText(content, 150)}
+          {truncateText(content, 120)}
         </p>
       </div>
       <div className="flex justify-between items-center">

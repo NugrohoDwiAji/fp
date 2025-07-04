@@ -48,7 +48,7 @@ model Berita {
   title     String
   description String @db.LongText
   filepath  String
-  uploudat  DateTime @default(now())
+  uploudat  DateTime 
 }
 
 model Pengumuman {

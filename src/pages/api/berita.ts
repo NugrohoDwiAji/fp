@@ -18,10 +18,12 @@ const createUploadDir = (dir: string) => {
 };
 
 const handlePostMethode = async (req: NextApiRequest, res: NextApiResponse) => {
-  createUploadDir(path.join(process.cwd(), "/public/berita"));
+
+    const uploadPath = "/home/pasca/uploads/berita";
+  createUploadDir(uploadPath);
 
   const form = formidable({
-    uploadDir: path.join(process.cwd(), "public", "berita"),
+    uploadDir: uploadPath,
     filename: (_, __, part) => {
       return `${part.originalFilename}`;
     },
@@ -45,16 +47,18 @@ const handlePostMethode = async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(400).json({ error: "File tidak ditemukan" });
 
     const file = Array.isArray(files.file) ? files.file[0] : files.file;
-    const filePath = `/berita/${file?.originalFilename}`;
+    const filePath = `/uploads/berita/${file?.originalFilename}`;
     const titletmp = fields.title?.toString();
     const title = titletmp || "utitled";
     const desc = fields.description?.toString() || "description";
-
+    const date = fields.tanggal?.toString() || "date";
+  
     const saved = await prisma.berita.create({
       data: {
         title: title,
         filepath: filePath,
         description: desc,
+        uploudat: date,
       },
     });
     res.status(202).json(saved);

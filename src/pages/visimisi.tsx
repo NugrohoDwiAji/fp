@@ -45,16 +45,23 @@ useEffect(() => {
     <div className="">
       {/* jumbotron */}
       <div className="relative h-80 md:h-96 lg:h-[35rem] ">
-        <img src="/img/banner-1.png" alt="" className="w-full bg-cover h-full" />
-      </div>
-      <div className="m-auto text-center mt-10">
-          <h1 className="text-purple-900 text-3xl md:text-5xl lg:text-6xl font-bold">
+        <img src="/img/banner-pasca.png" alt="" className="w-full bg-cover h-full" />
+         <div className="absolute top-0 left-0 right-0 bottom-0 flex flex-col justify-center p-10 -mt-9 md:-mt-20 lg:-mt-36 ">
+          <h1 className="text-white text-3xl md:text-5xl lg:text-6xl font-bold">
             Visi Dan Misi
           </h1>
-          <h2 className="text-purple-900 mt-3">
-            Visi dan Misi Fakultas Ekonomi dan Bisnis Universitas Bumigora
+          <h2 className="text-white mt-3">
+            Visi dan Misi {identitas?.find((item) => item.name === "Nama Fakultas")?.value} Universitas Bumigora
           </h2>
+        </div>
       </div>
+       <div className="text-purple-900 text-center mt-10 ">
+        <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold">
+          Visi dan Misi
+        </h1>
+    
+      </div>
+     
       {/* main */}
       <main className="px-5 text-justify my-10 md:my-12 md:max-w-xl lg:max-w-4xl m-auto ">
         <div>
