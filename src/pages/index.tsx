@@ -237,7 +237,7 @@ export default function Home() {
             <hr className="border-t-[3px] border-white w-[50%] md:w-[30%]  mt-5" />
             <div className="flex flex-col gap-5 md:flex-row mt-10 flex-wrap justify-center">
               {dataPengumuman.map((item, index) => (
-                <CardPengumuman key={index} {...item} />
+                <CardPengumuman key={index} file_path={item.file_path} title={item.title} uploadat={item.uploadat}/>
               ))}
             </div>
           </div>

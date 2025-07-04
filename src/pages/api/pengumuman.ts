@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/services/prisma";
 import formidable, { Fields, Files } from "formidable";
 import fs from "fs";
-import path from "path";
+
 
 export const config = {
   api: {
@@ -18,10 +18,12 @@ const createUploadDir = (dir: string) => {
 };
 
 const handlePostMethod = async (req: NextApiRequest, res: NextApiResponse) => {
-  createUploadDir(path.join(process.cwd(), "/public/pengumuman"));
+
+  const uploadPath = "/home/pasca/uploads/pengumuman";
+  createUploadDir(uploadPath);
 
   const form = formidable({
-    uploadDir: path.join(process.cwd(), "public", "pengumuman"),
+    uploadDir: uploadPath,
     filename: (_, __, part, ___) => {
       return `${part.originalFilename}`;
     },
@@ -45,7 +47,7 @@ const handlePostMethod = async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(400).json({ error: "File tidak ditemukan" });
 
     const file = Array.isArray(files.file) ? files.file[0] : files.file;
-    const filePath = `/pengumuman/${file?.originalFilename}`;
+    const filePath = `/uploads/pengumuman/${file?.originalFilename}`;
     const titletmp = fields.title?.toString();
     const title = titletmp || "utitled";
 
