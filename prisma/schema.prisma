@@ -55,7 +55,7 @@ model Pengumuman {
   id String @id @default(uuid())
   title String
   file_path String
-  uploadat DateTime @default(now())
+  uploadat DateTime 
 }
 
 model Identitas {

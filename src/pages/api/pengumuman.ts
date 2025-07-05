@@ -19,7 +19,7 @@ const createUploadDir = (dir: string) => {
 
 const handlePostMethod = async (req: NextApiRequest, res: NextApiResponse) => {
 
-  const uploadPath = "/home/pasca/uploads/pengumuman";
+  const uploadPath = "/public/pengumuman";
   createUploadDir(uploadPath);
 
   const form = formidable({
@@ -50,11 +50,14 @@ const handlePostMethod = async (req: NextApiRequest, res: NextApiResponse) => {
     const filePath = `/uploads/pengumuman/${file?.originalFilename}`;
     const titletmp = fields.title?.toString();
     const title = titletmp || "utitled";
+   const date = fields.uploadat?.toString() || "date";
 
     const saved = await prisma.pengumuman.create({
       data: {
         title: title,
         file_path: filePath,
+        uploadat: date
+        
       },
     });
     res.status(202).json(saved);

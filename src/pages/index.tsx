@@ -190,7 +190,7 @@ export default function Home() {
                 duration={6}
               />
             </h1>
-            <h1 className="md:text-lg lg:text-2xl">Lecturer</h1>
+            <h1 className="md:text-lg lg:text-2xl">Dosen</h1>
           </div>
           <div className="flex gap-2 items-center md:gap-4">
             <h1 className="text-2xl md:text-5xl lg:text-6xl ">

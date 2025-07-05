@@ -4,11 +4,13 @@ import ButtonPrimary from "@/components/elements/ButtonPrimary";
 import FileDropzone from "@/components/admin/elements/FileDropZone";
 import axios from "axios";
 import SuccessAlert from "@/components/cards/AlertSucces";
+import { u } from "framer-motion/m";
 
 type Data = {
   id: string;
   title: string;
   file_path: string;
+  uploadat: string;
 };
 
 export default function Pengumuman() {
@@ -17,6 +19,7 @@ export default function Pengumuman() {
   const [datas, setDatas] = useState<Data[] | null>(null);
   const [file, setFile] = useState<File | null>(null);
   const [isConfirm, setisConfirm] = useState(false);
+  const [uploadat, setUploadat] = useState<Date>();
   const [showAlert, setShowAlert] = useState(false);
   const [isUpdate, setIsUpdate] = useState({
     status: false,
@@ -24,7 +27,7 @@ export default function Pengumuman() {
   });
 
   const handleFileDrop = (files: File) => {
-  setisConfirm(true)
+    setisConfirm(true);
     setFile(files);
 
     // Lanjutkan upload ke server atau simpan ke state
@@ -34,6 +37,7 @@ export default function Pengumuman() {
     const data = {
       title: title,
       file: file,
+      uploadat: uploadat,
     };
     try {
       await axios.post("/api/pengumuman", data, {
@@ -51,7 +55,6 @@ export default function Pengumuman() {
   const handleGetMethode = async () => {
     try {
       const result = await axios.get("/api/pengumuman");
-      console.log(result.data);
       setDatas(result.data);
     } catch (error) {
       console.log("error", error);
@@ -64,7 +67,7 @@ export default function Pengumuman() {
       file: file,
     };
     try {
-     await axios.put(`/api/pengumumanDetails?id=${id}`, data, {
+      await axios.put(`/api/pengumumanDetails?id=${id}`, data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -86,6 +89,7 @@ export default function Pengumuman() {
       }));
       setTitle(result.data.title);
       setFile(result.data.file_path);
+      setUploadat(result.data.uploadat);
     } catch (error) {
       console.log("error", error);
     }
@@ -104,7 +108,6 @@ export default function Pengumuman() {
     handleGetMethode();
   }, []);
 
-  
   return (
     <AdminLayout>
       <h1 className="text-4xl text-gray-600 ">Pengumuman</h1>
@@ -117,6 +120,7 @@ export default function Pengumuman() {
 
       {isInput && (
         <div className="mt-16">
+          <div className="flex gap-10 mb-10">
           <div className="flex gap-5">
             <label htmlFor="title">Title</label>
             <input
@@ -127,6 +131,16 @@ export default function Pengumuman() {
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
+          <div className="flex gap-5">
+            <label htmlFor="uploadat">Tanggal Pengumuman</label>
+            <input
+              type="date"
+              id="uploadat"
+              className="p-2 bg-white h-10  rounded-md border-2 border-purple-400  font-bold focus:outline-purple-600"
+              onChange={(e) => setUploadat(new Date(e.target.value))}
+            />
+          </div>
+               </div>
           <FileDropzone onDrop={handleFileDrop} />
           {isConfirm && (
             <div className="flex gap-5 w-full justify-center mt-5">
@@ -195,8 +209,8 @@ export default function Pengumuman() {
           ))}
         </tbody>
       </table>
-      <SuccessAlert 
-        show={showAlert} 
+      <SuccessAlert
+        show={showAlert}
         onClose={() => setShowAlert(false)}
         message="Data berhasil disimpan ke database!"
         duration={4000} // Opsional: custom duration
