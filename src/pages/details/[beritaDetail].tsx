@@ -38,7 +38,7 @@ export default function BeritaDetail() {
       <img
         src={beritaData?.filepath}
         alt="Eror"
-        className="w-full h-96 bg-gray-300 mt-20 mb-5"
+        className="w-full h-[28rem] bg-gray-300 mt-20 mb-5"
       />
       <main>
         <h1 className="text-4xl font-bold mb-2">{beritaData?.title}</h1>

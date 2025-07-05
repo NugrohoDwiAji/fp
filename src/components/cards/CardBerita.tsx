@@ -30,14 +30,14 @@ const truncateText = (text: string, maxLength: number) => {
     });
   }, []);
   return (
-    <div data-aos="zoom-in-up" className="h-[28rem] w-72 md:w-80 shadow-xl shadow-gray-300 rounded-xl p-3 flex flex-col justify-between gap-4 bg-white">
+    <div data-aos="zoom-in-up" className="h-[30rem] w-72 md:w-80 shadow-xl shadow-gray-300 rounded-xl p-3 flex flex-col justify-between gap-4 bg-white">
       <img
         src={img}
         alt="notfound"
         className="h-52 w-full rounded-xl "
       />
       <div>
-        <h1 className="font-bold text-lg">{title}</h1>
+        <h1 className="font-bold text-lg">{truncateText(title, 30)}</h1>
         <p className="text-wrap overflow-hidden max-h-28">
           {truncateText(content, 120)}
         </p>
