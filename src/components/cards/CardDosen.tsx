@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 
 
 
@@ -12,7 +11,7 @@ export default function CardDosen({nama, nik, foto="/profil.png"}: Props) {
   return (
     <div className="flex h-32 w-md rounded-lg shadow-xl">
       <div className="flex justify-center items-center h-32 w-32 bg-purple-800 rounded-full">
-        <Image
+        <img
           src={foto}
           alt=""
           width={100}

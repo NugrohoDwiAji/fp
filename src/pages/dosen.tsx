@@ -66,7 +66,7 @@ export default function Dosen() {
         <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold">Dosen</h1>
       </div>
       {/* Main */}
-      <main className="flex  items-center min-h-64 py-10">
+      <main className="flex  items-center min-h-64 py-10 px-5 lg:px-10">
         <div className="flex gap-5 flex-wrap justify-center">
         {datas.map((item) => (
           <CardDosen
