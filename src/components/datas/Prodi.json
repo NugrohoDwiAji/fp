@@ -116,13 +116,13 @@
     {
         "id": 20,
         "name": "S2 Ilmu Komputer",
-        "Link": ""
+        "Link": "/prodi/s2IlmuKomputer"
 
     },
     {
         "id": 21,
         "name": "S2 Sastra Inggris",
-        "Link": ""
+        "Link": "/prodi/s2SastraInggris"
 
     }
 ]

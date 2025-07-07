@@ -1,0 +1,199 @@
+import AdminLayout from "@/components/layouts/AdminLayout";
+import React, { useState, useEffect } from "react";
+import ButtonPrimary from "@/components/elements/ButtonPrimary";
+import Image from "next/image";
+import FileDropzone from "@/components/admin/elements/FileDropZone";
+import axios from "axios";
+import SuccessAlert from "@/components/cards/AlertSucces";
+
+type DataDosen = {
+  nama: string;
+  nik: string;
+};
+
+type Data = {
+  id: string;
+  nama: string;
+  nik: string;
+  foto: string;
+  uploadat: string;
+};
+
+export default function dosen() {
+  const [isInput, setIsInput] = useState(false);
+  const [file, setFile] = useState<File | null>(null);
+  const [showAlert, setShowAlert] = useState(false);
+  const [dataDosen, setDataDosen] = useState<DataDosen>({
+    nama: "",
+    nik: "",
+  });
+  const [datas, setDatas] = useState<Data[]>([]);
+
+  const handlePost = async () => {
+    const data = {
+      nama: dataDosen.nama,
+      nik: dataDosen.nik,
+      file: file,
+    };
+    try {
+      await axios.post("/api/dosen", data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      setShowAlert(true)
+      setTimeout(() =>document.location.reload() , 1500);
+      
+    } catch (error) {
+      console.log(Error);
+    }
+  };
+
+  const handleDelete = async (id: string) => {
+    try {
+      await axios.delete(`/api/dosen?id=${id}`);
+      document.location.reload();
+    } catch (error) {
+      console.log(Error);
+    }
+  };
+
+  const handleGet = async () => {
+    try {
+      const result = await axios.get("/api/dosen");
+      setDatas(result.data);
+    } catch (error) {
+      console.log(Error);
+    }
+  };
+
+  const handleFileDrop = (file: File) => {
+    setFile(file);
+  };
+
+
+  useEffect(() => {
+    handleGet();
+  }, [])
+  
+  return (
+    <AdminLayout>
+      <h1 className="text-4xl text-gray-600 ">Input Dosen</h1>
+      <div className="flex gap-5">
+        <ButtonPrimary
+          ClassName="text-white bg-purple-600 hover:bg-white hover:text-purple-600 hover:border-2 hover:border-purple-600 ease-in-out duration-300 transition-all mt-5"
+          onClick={() => setIsInput(!isInput)}
+        >
+          {isInput ? "Batal" : "Input Dosen"}
+        </ButtonPrimary>
+        {isInput && (
+          <ButtonPrimary
+            ClassName="text-white bg-green-600 hover:bg-white hover:text-green-600 hover:border-2 hover:border-green-600 ease-in-out duration-300 transition-all mt-5"
+            onClick={() => handlePost() }
+          >
+            Save
+          </ButtonPrimary>
+        )}
+      </div>
+      {isInput && (
+        <div className="ease-in-out duration-300 transition-all">
+          <FileDropzone onDrop={handleFileDrop} />
+          <div className="flex items-center justify-center gap-20 w-full mt-5">
+            <div className="flex items-center gap-5 ">
+              <label htmlFor="">Nama Dosen</label>
+              <input
+                type="text"
+                name=""
+                id=""
+                onChange={(e) =>
+                  setDataDosen({ ...dataDosen, nama: e.target.value })
+                }
+                className="bg-white p-2 focus:outline-purple-600 rounded-lg outline-purple-100 outline-2 w-80"
+              />
+            </div>
+
+            <div className="flex items-center gap-5 ">
+              <label htmlFor="">NIK</label>
+              <input
+                type="text"
+                onChange={(e) =>
+                  setDataDosen({ ...dataDosen, nik: e.target.value })
+                }
+                className="bg-white p-2 focus:outline-purple-600 rounded-lg outline-purple-100 outline-2"
+              />
+            </div>
+          </div>
+        </div>
+      )}
+      <main>
+        <table className="table-fixed border-collapse mt-10  m-auto rounded-2xl">
+          <thead className="text-white">
+            <tr className="">
+              <th className="lg:w-10 py-2 bg-purple-600 rounded-tl-md border-xl border-gray-300 ">
+                No
+              </th>
+              <th className=" lg:w-60 bg-purple-600 border-x border-gray-300 ">
+                Nama Dosen
+              </th>
+              <th className=" lg:w-2xl bg-purple-600 border-x border-gray-300 ">
+                Nik
+              </th>
+              <th className=" lg:w-2xl bg-purple-600 border-x border-gray-300 ">
+                Foto
+              </th>
+
+              <th className=" lg:w-56 bg-purple-600 rounded-tr-md border-gray-300 ">
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {datas.map((data, index) => (
+                
+            <tr className="border-b border-x border-gray-300">
+              <td className="py-2 text-center bg-purple-100">{index + 1}</td>
+              <td className="py-2 px-2 border-x border-gray-300 bg-purple-100">
+                {data?.nama}
+              </td>
+              <td className="py-2 px-2 border-x border-gray-300 bg-purple-100">
+                {data?.nik}
+              </td>
+              <td className="py-2 px-2 border-x border-gray-300 bg-purple-100 flex justify-center ">
+                <Image
+                  src={data?.foto ||"/profil.png" }
+                  alt=""
+                  width={100}
+                  height={100}
+                  className=" w-[6.5rem] h-[6.5rem] bg-purple-400 "
+                />
+              </td>
+              <td className="bg-purple-100 border-b border-gray-300">
+                <div className="py-2 text-center  flex gap-5 justify-center  ">
+                  <ButtonPrimary
+                    ClassName="bg-yellow-500 text-white"
+                    onClick={() => {}}
+                  >
+                    Edit
+                  </ButtonPrimary>
+                  <ButtonPrimary
+                    ClassName="bg-red-500 text-white"
+                    onClick={() => handleDelete(data?.id)}
+                  >
+                    Delete
+                  </ButtonPrimary>
+                </div>
+              </td>
+            </tr>
+            ))}
+          </tbody>
+        </table>
+      </main>
+      <SuccessAlert
+        show={showAlert}
+        onClose={() => setShowAlert(false)}
+        message="Data berhasil disimpan ke database!"
+        duration={4000} // Opsional: custom duration
+      />
+    </AdminLayout>
+  );
+}

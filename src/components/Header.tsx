@@ -111,6 +111,13 @@ export default function Header({ isScroll }: Props) {
       action: () => {},
       subMenu: [],
     },
+    {
+      id: 7,
+      name: "Dosen",
+      url: "/dosen",
+      action: () => {},
+      subMenu: [],
+    }
   ];
 
   useEffect(() => {

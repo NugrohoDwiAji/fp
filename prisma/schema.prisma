@@ -70,3 +70,10 @@ model Prodi{
     nama String
     link String
 }
+model dosen{
+  id String @id @default(uuid())
+  nama String
+  nik String
+  foto String
+  create_at DateTime @default(now())
+}

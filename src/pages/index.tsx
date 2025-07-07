@@ -7,6 +7,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import AnimatedNumber from "@/components/elements/AnimatedNumber";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 type ContentType = {
   id: string;
@@ -180,7 +181,7 @@ export default function Home() {
             </h1>
             <h1 className="md:text-lg lg:text-2xl">Program Studi</h1>
           </div>
-          <div className="flex gap-2 items-center md:gap-4">
+          <Link href={"/dosen"} className="flex gap-2 items-center md:gap-4 hover:scale-105 hover:shadow-2xl  ease-in-out duration-300 transition-all">
             <h1 className="text-2xl md:text-5xl lg:text-6xl ">
               <AnimatedNumber
                 end={Number(
@@ -191,7 +192,7 @@ export default function Home() {
               />
             </h1>
             <h1 className="md:text-lg lg:text-2xl">Dosen</h1>
-          </div>
+          </Link>
           <div className="flex gap-2 items-center md:gap-4">
             <h1 className="text-2xl md:text-5xl lg:text-6xl ">
               <AnimatedNumber

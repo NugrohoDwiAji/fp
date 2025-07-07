@@ -1,7 +1,7 @@
 import React from "react";
 import MenuSidebar from "./elements/MenuSidebar";
 import { usePathname } from "next/navigation";
-import { Layers, House, Library, FileAxis3d, Newspaper  } from "lucide-react";
+import { Layers, House, Library, FileAxis3d, Newspaper, GraduationCap  } from "lucide-react";
 
 export default function SideBar() {
   const menu = [
@@ -29,6 +29,11 @@ export default function SideBar() {
       name: "Berita",
       url: "/admin/berita",
       icon: <Newspaper />,
+    },
+    {
+      name: "Dosen",
+      url: "/admin/dosen",
+      icon: <GraduationCap />,
     }
     
   ];

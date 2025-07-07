@@ -13,7 +13,8 @@ export default function App({ Component, pageProps }: AppProps) {
     currentPath === "/admin/berkas" ||
     currentPath === "/login" ||
     currentPath === "/admin/strukturOrganisasi" ||
-    currentPath === "/admin/berita";
+    currentPath === "/admin/berita"||
+    currentPath === "/admin/dosen";
 
   return (
     <MainLayout
