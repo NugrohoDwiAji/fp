@@ -61,7 +61,7 @@ const handleEdit = async (id: string) =>{
               Title
             </th>
             <th className=" lg:w-2xl bg-purple-600 border-x border-gray-300 ">
-              Value
+              Description
             </th>
             <th className=" lg:w-56 bg-purple-600 rounded-tr-md border-gray-300 ">
               Action

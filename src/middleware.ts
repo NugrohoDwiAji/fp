@@ -8,7 +8,6 @@ export function middleware(request: NextRequest) {
     // Ambil token dari cookies
     const token = request.cookies.get('jwt')?.value
 
-    console.log("Ini token", token);
   
   // Cek apakah route dimulai dengan /admin
   if (pathname.startsWith('/admin')) {

@@ -78,5 +78,6 @@ model dosen{
   nama String
   nik String
   foto String
+  jenis_dosen String
   create_at DateTime @default(now())
 }

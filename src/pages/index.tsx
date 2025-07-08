@@ -247,13 +247,7 @@ export default function Home() {
 
       {/* Kenapa Kami */}
       <div className="flex justify-center items-center py-5 bg-white gap-5 h-fit">
-        <img
-          data-aos="zoom-in-right"
-          src="/img/laminfokom.png"
-          alt="eror"
-          className=" h-28 md:h-48"
-        />
-        <div className="h-32 w-[2px] bg-purple-900 mx-2"></div>
+        
         <img
           data-aos="zoom-in-right"
           src="/img/ubg-full.jpg"
@@ -267,6 +261,14 @@ export default function Home() {
           alt="eror"
           className="h-20 md:h-36"
         />
+        <div className="h-32 w-[2px] bg-purple-900 mx-2"></div>
+        <img
+          data-aos="zoom-in-down"
+          src="/img/laminfokom.png"
+          alt="eror"
+          className=" h-28 md:h-48"
+        />
+        
       </div>
     </div>
   );

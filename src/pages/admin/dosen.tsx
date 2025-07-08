@@ -8,12 +8,14 @@ import SuccessAlert from "@/components/cards/AlertSucces";
 type DataDosen = {
   nama: string;
   nik: string;
+  jenis_dosen: string;
 };
 
 type Data = {
   id: string;
   nama: string;
   nik: string;
+  jenis_dosen: string;
   foto: string;
   uploadat: string;
 };
@@ -25,6 +27,7 @@ export default function dosen() {
   const [dataDosen, setDataDosen] = useState<DataDosen>({
     nama: "",
     nik: "",
+    jenis_dosen: "",
   });
   const [datas, setDatas] = useState<Data[]>([]);
 
@@ -32,6 +35,7 @@ export default function dosen() {
     const data = {
       nama: dataDosen.nama,
       nik: dataDosen.nik,
+      jenis_dosen: dataDosen.jenis_dosen,
       file: file,
     };
     try {
@@ -40,9 +44,8 @@ export default function dosen() {
           "Content-Type": "multipart/form-data",
         },
       });
-      setShowAlert(true)
-      setTimeout(() =>document.location.reload() , 1500);
-      
+      setShowAlert(true);
+      setTimeout(() => document.location.reload(), 1500);
     } catch (error) {
       console.log(Error);
     }
@@ -70,11 +73,10 @@ export default function dosen() {
     setFile(file);
   };
 
-
   useEffect(() => {
     handleGet();
-  }, [])
-  
+  }, []);
+
   return (
     <AdminLayout>
       <h1 className="text-4xl text-gray-600 ">Input Dosen</h1>
@@ -88,7 +90,7 @@ export default function dosen() {
         {isInput && (
           <ButtonPrimary
             ClassName="text-white bg-green-600 hover:bg-white hover:text-green-600 hover:border-2 hover:border-green-600 ease-in-out duration-300 transition-all mt-5"
-            onClick={() => handlePost() }
+            onClick={() => handlePost()}
           >
             Save
           </ButtonPrimary>
@@ -121,6 +123,41 @@ export default function dosen() {
                 className="bg-white p-2 focus:outline-purple-600 rounded-lg outline-purple-100 outline-2"
               />
             </div>
+            <div className="flex flex-col gap-5">
+              <h1>Home Base Dosen</h1>
+              <div className="flex gap-5">
+                <div>
+                  <input
+                    onChange={(e) =>
+                      setDataDosen({
+                        ...dataDosen,
+                        jenis_dosen: e.target.value,
+                      })
+                    }
+                    type="radio"
+                    name="jenisdosen"
+                    id="dosenilkom"
+                    value={"S2 Ilmu Komputer"}
+                  />
+                  <label htmlFor="dosenilkom">S2 Ilmu Komputer</label>
+                </div>
+                <div>
+                  <input
+                    onChange={(e) =>
+                      setDataDosen({
+                        ...dataDosen,
+                        jenis_dosen: e.target.value,
+                      })
+                    }
+                    type="radio"
+                    name="jenisdosen"
+                    id="dosensastrainggris"
+                    value={"S2 Sastra Inggris"}
+                  />
+                  <label htmlFor="dosensastrainggris">S2 Sastra Inggris</label>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}
@@ -138,6 +175,9 @@ export default function dosen() {
                 Nik
               </th>
               <th className=" lg:w-2xl bg-purple-600 border-x border-gray-300 ">
+                Homebase Dosen
+              </th>
+              <th className=" lg:w-2xl bg-purple-600 border-x border-gray-300 ">
                 Foto
               </th>
 
@@ -148,41 +188,43 @@ export default function dosen() {
           </thead>
           <tbody>
             {datas.map((data, index) => (
-                
-            <tr className="border-b border-x border-gray-300">
-              <td className="py-2 text-center bg-purple-100">{index + 1}</td>
-              <td className="py-2 px-2 border-x border-gray-300 bg-purple-100">
-                {data?.nama}
-              </td>
-              <td className="py-2 px-2 border-x border-gray-300 bg-purple-100">
-                {data?.nik}
-              </td>
-              <td className="py-2 px-2 border-x border-gray-300 bg-purple-100 flex justify-center ">
-                <img
-                  src={data?.foto ||"/profil.png" }
-                  alt=""
-                  width={100}
-                  height={100}
-                  className=" w-[6.5rem] h-[6.5rem] bg-purple-400 "
-                />
-              </td>
-              <td className="bg-purple-100 border-b border-gray-300">
-                <div className="py-2 text-center  flex gap-5 justify-center  ">
-                  <ButtonPrimary
-                    ClassName="bg-yellow-500 text-white"
-                    onClick={() => {}}
-                  >
-                    Edit
-                  </ButtonPrimary>
-                  <ButtonPrimary
-                    ClassName="bg-red-500 text-white"
-                    onClick={() => handleDelete(data?.id)}
-                  >
-                    Delete
-                  </ButtonPrimary>
-                </div>
-              </td>
-            </tr>
+              <tr className="border-b border-x border-gray-300 text-center">
+                <td className="py-2 text-center bg-purple-100">{index + 1}</td>
+                <td className="py-2 px-2 border-x border-gray-300 bg-purple-100">
+                  {data?.nama}
+                </td>
+                <td className="py-2 px-2 border-x border-gray-300 bg-purple-100">
+                  {data?.nik}
+                </td>
+                <td className="py-2 px-2 border-x border-gray-300 bg-purple-100">
+                  {data?.jenis_dosen}
+                </td>
+                <td className="py-2 px-2 border-x border-gray-300 bg-purple-100 flex justify-center ">
+                  <img
+                    src={data?.foto || "/profil.png"}
+                    alt=""
+                    width={100}
+                    height={100}
+                    className=" w-[6.5rem] h-[6.5rem] bg-purple-400 "
+                  />
+                </td>
+                <td className="bg-purple-100 border-b border-gray-300">
+                  <div className="py-2 text-center  flex gap-5 justify-center  ">
+                    <ButtonPrimary
+                      ClassName="bg-yellow-500 text-white"
+                      onClick={() => {}}
+                    >
+                      Edit
+                    </ButtonPrimary>
+                    <ButtonPrimary
+                      ClassName="bg-red-500 text-white"
+                      onClick={() => handleDelete(data?.id)}
+                    >
+                      Delete
+                    </ButtonPrimary>
+                  </div>
+                </td>
+              </tr>
             ))}
           </tbody>
         </table>

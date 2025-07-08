@@ -49,11 +49,13 @@ const handlePostMethode = async (req: NextApiRequest, res: NextApiResponse) => {
     const namatmp = fields.nama?.toString();
     const nama = namatmp || "utitled";
     const nik = fields.nik?.toString() || "description";
+    const jenis_dosen = fields.jenis_dosen?.toString() || "Dosen Ilkom";
 
     const saved = await prisma.dosen.create({
       data: {
         nama: nama,
         nik: nik,
+        jenis_dosen: jenis_dosen,
         foto: filePath,
       },
     });

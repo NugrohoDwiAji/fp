@@ -32,16 +32,18 @@ export default function Header({ isScroll }: Props) {
   const [subActive, setsubActive] = useState<string | null>(null);
   const currentPath = usePathname();
   const [identitas, setIdentitas] = useState<IdentitasType[] | null>([]);
-  const [prodi, setProdi] = useState<TransformedProdiType[]  | null>([]);
+  const [prodi, setProdi] = useState<TransformedProdiType[] | null>([]);
 
   const handleGetProdi = async () => {
     try {
       const result = await axios.get<ProdiType[]>("/api/prodi");
-          const transformedData: TransformedProdiType[] = result.data.map(item => ({
-      id: item.id,
-      name: item.nama,    // Mengubah 'nama' menjadi 'name'
-      url: item.link      // Mengubah 'link' menjadi 'url'
-    }));
+      const transformedData: TransformedProdiType[] = result.data.map(
+        (item) => ({
+          id: item.id,
+          name: item.nama, // Mengubah 'nama' menjadi 'name'
+          url: item.link, // Mengubah 'link' menjadi 'url'
+        })
+      );
       setProdi(transformedData);
     } catch (error) {
       console.log(error);
@@ -87,7 +89,13 @@ export default function Header({ isScroll }: Props) {
         },
       ],
     },
-
+    {
+      id: 7,
+      name: "Dosen",
+      url: "/dosen",
+      action: () => {},
+      subMenu: [],
+    },
     {
       id: 4,
       name: "Program Studi",
@@ -111,13 +119,6 @@ export default function Header({ isScroll }: Props) {
       action: () => {},
       subMenu: [],
     },
-    {
-      id: 7,
-      name: "Dosen",
-      url: "/dosen",
-      action: () => {},
-      subMenu: [],
-    }
   ];
 
   useEffect(() => {
@@ -156,7 +157,7 @@ export default function Header({ isScroll }: Props) {
               className={classnames({
                 "underline font-bold":
                   currentPath === item.url ||
-                  item.subMenu?.some((path) => path.url  === currentPath),
+                  item.subMenu?.some((path) => path.url === currentPath),
                 "border-none": currentPath !== item.url,
                 "text-gray-200 hover:text-white hover:underline hover:scale-105 hover:font-bold hover:shadow-lg ease-in-out duration-300 transition-all":
                   true,

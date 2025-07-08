@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CardDosen from "@/components/cards/CardDosen";
+import { set } from "date-fns";
 
 type IdentitasType = {
   id: string;
@@ -18,7 +19,8 @@ type Data = {
 
 export default function Dosen() {
   const [identitas, setIdentitas] = useState<IdentitasType[] | null>([]);
-  const [datas, setDatas] = useState<Data[]>([]);
+  const [dosenSasing, setDosenSasing] = useState<Data[]>([]);
+  const [dosenIlkom, setDosenIlkom] = useState<Data[]>([]);
 
   const handleGetIdentitas = async () => {
     try {
@@ -28,10 +30,15 @@ export default function Dosen() {
       console.log(error);
     }
   };
-    const handleGet = async () => {
+
+  const handleGetByHomebase = async () => {
+    const ilkom = "S2 Ilmu Komputer";
+    const sasing = "S2 Sastra Inggris";
     try {
-      const result = await axios.get("/api/dosen");
-      setDatas(result.data);
+      const result = await axios.get(`/api/dosenDetails?homebase=${ilkom}`);
+      setDosenIlkom(result.data);
+      const result2 = await axios.get(`/api/dosenDetails?homebase=${sasing}`);
+      setDosenSasing(result2.data);
     } catch (error) {
       console.log(Error);
     }
@@ -39,7 +46,7 @@ export default function Dosen() {
 
   useEffect(() => {
     handleGetIdentitas();
-    handleGet();
+    handleGetByHomebase()
   }, []);
 
   return (
@@ -66,9 +73,21 @@ export default function Dosen() {
         <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold">Dosen</h1>
       </div>
       {/* Main */}
-      <main className="flex  items-center min-h-64 py-10 px-5 lg:px-10">
+      <main className="flex flex-col  items-center min-h-64 py-10 px-5 lg:px-10">
+        <h1 className="text-lg md:text-xl lg:text-2xl font-bold text-purple-900 mb-5 border-2 px-2 py-1 border-dashed rounded-lg">S2 Sastra Inggris</h1>
         <div className="flex gap-5 flex-wrap justify-center">
-        {datas.map((item) => (
+        {dosenSasing.map((item) => (
+          <CardDosen
+            key={item.id}
+            nama={item.nama}
+            nik={item.nik}
+            foto={item.foto}
+          />
+        ))}
+        </div>
+        <h1 className="text-lg md:text-xl lg:text-2xl font-bold text-purple-900 mb-5 border-2 border-dashed px-2 py-1 rounded-lg mt-10">Ilmu Komputer</h1>
+        <div className="flex gap-5 flex-wrap justify-center">
+        {dosenIlkom.map((item) => (
           <CardDosen
             key={item.id}
             nama={item.nama}
