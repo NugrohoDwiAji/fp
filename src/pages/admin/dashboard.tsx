@@ -35,6 +35,8 @@ type Identitas = {
 interface Prodi {
   nama: string;
   link: string;
+  visi:string;
+  misi:string
 }
 
 const prisma = new PrismaClient();
@@ -130,6 +132,8 @@ export default function Dashboard({ data, rawResults }: VisitData) {
           const pushData = {
             nama: selectedProdi.name,
             link: selectedProdi.Link,
+            visi:"",
+            misi:""
           };
           selectedOptions.push(pushData);
         }
@@ -140,6 +144,7 @@ export default function Dashboard({ data, rawResults }: VisitData) {
   };
 
   const handleSaveProdi = async () => {
+    
     try {
       await axios.post("/api/prodi", selectedProdi);
       setShowAlert(true);

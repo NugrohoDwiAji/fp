@@ -69,7 +69,10 @@ model Prodi{
     id String @id @default(uuid())
     nama String
     link String
+    visi String @db.LongText 
+    misi String @db.LongText 
 }
+
 model dosen{
   id String @id @default(uuid())
   nama String

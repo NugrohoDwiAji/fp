@@ -79,9 +79,9 @@ const handleGetProdi = async () => {
   }, [])
   return (
     <footer className="bg-purple-900 text-white flex flex-col items-center">
-      <div className="md:flex justify-between md:gap-16 px-7 pt-5 md:pt-14 md:px-10 pb-10 lg:flex gap-28 lg:text-xl lg:gap-0 lg:w-7xl">
+      <div className="md:flex justify-between md:gap-16 px-7 pt-5 md:pt-14 md:px-10 pb-10 lg:flex gap-28 lg:text-xl lg:gap-64 lg:w-7xl lg:justify-center">
         {/* alamat dan logo */}
-        <div>
+        <div className="">
           <img src="/img/ubg-2.png" alt="" className="text-white h-32" />
           <h1 className="text-xl mb-2 lg:mt-0 font-bold">Alamat</h1>
           <p className="lg:w-96">
@@ -90,21 +90,9 @@ const handleGetProdi = async () => {
           </p>
         </div>
 
-        {/* Quick Link */}
-        <div className="mt-7 md:mt-0">
-          <h1 className="font-bold text-xl mb-2">Departemen</h1>
-          <div>
-            {prodi?.map((item, index) => (
-              <Link href={item.id} className="flex mb-2" key={index}>
-                 <ChevronRight/>
-                {item.nama}
-              </Link>
-            ))}
-          </div>
-        </div>
 
         {/* kontak */}
-        <div>
+        <div className="">
           <h1 className="mt-10 md:mt-0 mb-2 text-xl font-bold">Kontak</h1>
           <div className="flex flex-col gap-2">
             {kontak.map((item, index) => (

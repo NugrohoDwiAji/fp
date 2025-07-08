@@ -70,7 +70,11 @@ const handlePostMethode = async (req: NextApiRequest, res: NextApiResponse) => {
 
 const handleGetMethode = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const result = await prisma.berita.findMany();
+    const result = await prisma.berita.findMany({
+      orderBy: {
+        uploudat: "asc",
+      },
+    });
     res.status(200).json(result);
   } catch (error) {
     console.error("Error fetching content:", error);

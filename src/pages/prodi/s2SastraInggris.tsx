@@ -1,8 +1,45 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
+
+
+interface Prodi {
+  id: string;
+  nama: string;
+  link: string;
+  visi: string;
+  misi: string;
+}
 
 
 export default function S2SastraInggris() {
+  const [prodi, setProdi] = useState<Prodi[]>([]);
+  const handleGetProdi = async () => {
+    try {
+      const result = await axios.get("/api/prodi");
+      setProdi(result.data);
+    } catch (error) {
+      console.log(error, "eror");
+    }
+  };
 
+
+  const misiContent =
+    prodi?.find((item: Prodi) => item.nama === "S2 Sastra Inggris")?.misi || "";
+
+  const formattedContent = misiContent
+      .split(/(?=\d+\.)/) // Pisahkan sebelum angka
+  .map(item => item.replace(/^\d+\.\s*/, '').trim()) // Hapus nomor dan spasi setelahnya
+  .filter(item => item.length > 0); // Hapus item kosong jika ada
+
+
+
+const dataMap = formattedContent.slice(1);
+
+
+
+useEffect(() => {
+handleGetProdi();
+}, [])
 
   return (
     <div className="min-h-screen">
@@ -35,45 +72,20 @@ export default function S2SastraInggris() {
             Visi
           </h1>
           <p className="text-lg indent-10">
-            Program Magister Sastra Inggris di Universitas Bumigora didirikan
-            dengan komitmen untuk memberikan kontribusi yang signifikan dalam
-            pengembangan ilmu linguistik, sastra, dan budaya di Kawasan Timur
-            Indonesia. Dengan mengacu pada visi universitas yang lebih luas,
-            program ini bertujuan untuk mencapai keunggulan akademik dan sosial
-            melalui pendekatan holistik dalam pendidikan, penelitian, dan
-            pengabdian masyarakat. Visi ini dirancang untuk memfokuskan upaya
-            program studi dalam memenuhi tuntutan global dan lokal di bidang
-            sastra Inggris, serta mendukung pencapaian tujuan strategis
-            universitas. Visi Program S2 Sastra Inggris "Menjadi program studi
-            yang unggul dalam linguistik, sastra, dan budaya melalui pendidikan,
-            penelitian, dan pengabdian kepada masyarakat pada tahun 2028 di
-            Kawasan Timur Indonesia." Visi program S2 Sastra Inggris di
-            Universitas Bumigora sejalan dengan visi universitas yang lebih
-            luas, yakni menjadi perguruan tinggi unggulan yang berperan aktif
-            dalam pengembangan ilmu pengetahuan dan teknologi serta ilmu sosial,
-            seni budaya, dan kesehatan. Dalam konteks ini, visi program S2
-            Sastra Inggris menekankan pada tiga pilar utama: pendidikan,
-            penelitian, dan pengabdian masyarakat.
+           {prodi.find((item) => item.nama === "S2 Sastra Inggris")?.visi}
           </p>
         </div>
         <div>
           <h1 className="font-bold mt-10 text-xl md:text-2xl mb-2 text-purple-900">
             Misi
           </h1>
-          <p className="text-lg indent-10">
-            Misi Program S2 Sastra Inggris di Universitas Bumigora dirancang
-            untuk mewujudkan visi program yang unggul dalam linguistik, sastra,
-            dan budaya dengan pendekatan yang komprehensif dan terintegrasi.
-            Dalam upaya untuk mendukung pencapaian tujuan strategis universitas
-            dan memberikan dampak positif bagi masyarakat di Kawasan Timur
-            Indonesia, program ini menetapkan beberapa misi kunci. Misi-misi ini
-            mencakup beberapa hal antara lain sebagai berikut.
+          <p className="space-y-2 text-lg text-justify indent-10 mb-5">
+            {formattedContent[0]}
           </p>
-          <ul className="text-lg list-decimal ml-5">
-            <li>Melaksanakan pendidikan berbagai kegiatan akademik dan non-akademik yang membina lulusan magister Sastra Inggris agar memiliki pemahaman mendalam dalam konteks nasional dan global, sehingga mereka dapat bersaing secara efektif di Kawasan Timur Indonesia.</li>
-            <li>Melaksanakan penelitian berkualitas tinggi dalam linguistik, sastra dan budaya yang inovatif sehingga hasil penelitian tersebut dapat menjadi hilirisasi penelitian di Kawasan Timur Indonesia. </li>
-            <li>Melaksanakan kegiatan pengabdian kepada masyarakat yang relevan dengan bidang linguistik, sastra dan budaya yang dapat meningkatkan kualitas hidup masyarakat dan hilirisasi pengabdian kepada masyarakat di Kawasan Timur Indonesia.</li>
-            <li> Melaksanakan kerjasama di bidang tri dharma.</li>
+          <ul className="space-y-2 text-lg text-justify list-decimal ml-5 ">
+            {dataMap.map((item, index) => (
+               <li key={index}>{item}</li> 
+              ))}
           </ul>
         </div>
       </main>
