@@ -1,7 +1,6 @@
 import AdminLayout from "@/components/layouts/AdminLayout";
 import React, { useState, useEffect } from "react";
 import ButtonPrimary from "@/components/elements/ButtonPrimary";
-import Image from "next/image";
 import FileDropzone from "@/components/admin/elements/FileDropZone";
 import axios from "axios";
 import SuccessAlert from "@/components/cards/AlertSucces";
@@ -159,7 +158,7 @@ export default function dosen() {
                 {data?.nik}
               </td>
               <td className="py-2 px-2 border-x border-gray-300 bg-purple-100 flex justify-center ">
-                <Image
+                <img
                   src={data?.foto ||"/profil.png" }
                   alt=""
                   width={100}

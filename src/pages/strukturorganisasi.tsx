@@ -1,6 +1,5 @@
 
 import React,{useEffect, useState} from "react";
-import Image from "next/image";
 import axios from 'axios';
 
 type IdentitasType = {
@@ -46,7 +45,7 @@ export default function StrukturOrganisasi() {
       {/* Main */}
       <main className="flex flex-col items-center pb-10 min-h-64 mt-10">
     
-      <Image src={identitas?.find((item) => item.name === "Struktur Organisasi")?.value || ""} alt="Struktur Organisasi" width={1000} height={1000} />
+      <img src={identitas?.find((item) => item.name === "Struktur Organisasi")?.value || ""} alt="Struktur Organisasi" width={1000} height={1000} />
       </main>
     </div>
   );
