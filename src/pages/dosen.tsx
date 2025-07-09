@@ -85,7 +85,7 @@ export default function Dosen() {
           />
         ))}
         </div>
-        <h1 className="text-lg md:text-xl lg:text-2xl font-bold text-purple-900 mb-5 border-2 border-dashed px-2 py-1 rounded-lg mt-10">Ilmu Komputer</h1>
+        <h1 className="text-lg md:text-xl lg:text-2xl font-bold text-purple-900 mb-5 border-2 border-dashed px-2 py-1 rounded-lg mt-10">S2 Ilmu Komputer</h1>
         <div className="flex gap-5 flex-wrap justify-center">
         {dosenIlkom.map((item) => (
           <CardDosen

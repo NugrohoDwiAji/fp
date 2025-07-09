@@ -7,7 +7,7 @@ const handleGetMethod = async (req: NextApiRequest, res: NextApiResponse) => {
     try {
         const result = await prisma.dosen.findMany({
             where: { jenis_dosen: homebase as string },
-            orderBy: { nama: 'asc' }
+            orderBy: { create_at: 'desc' }
         });
         res.status(200).json(result);
     } catch (error) {
