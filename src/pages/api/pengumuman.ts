@@ -71,7 +71,7 @@ const handleGetMethode = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const result = await prisma.pengumuman.findMany({
       orderBy: {
-        uploadat: "asc",
+        uploadat: "desc",
       },
     });
     res.status(200).json(result);

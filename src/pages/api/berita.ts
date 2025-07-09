@@ -72,7 +72,7 @@ const handleGetMethode = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const result = await prisma.berita.findMany({
       orderBy: {
-        uploudat: "asc",
+        uploudat: "desc",
       },
     });
     res.status(200).json(result);
