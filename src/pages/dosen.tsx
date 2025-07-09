@@ -74,6 +74,17 @@ export default function Dosen() {
       </div>
       {/* Main */}
       <main className="flex flex-col  items-center min-h-64 py-10 px-5 lg:px-10">
+              <h1 className="text-lg md:text-xl lg:text-2xl font-bold text-purple-900 mb-5 border-2 border-dashed px-2 py-1 rounded-lg">S2 Ilmu Komputer</h1>
+        <div className="flex gap-5 flex-wrap justify-center mb-10">
+        {dosenIlkom.map((item) => (
+          <CardDosen
+            key={item.id}
+            nama={item.nama}
+            nik={item.nik}
+            foto={item.foto}
+          />
+        ))}
+        </div>
         <h1 className="text-lg md:text-xl lg:text-2xl font-bold text-purple-900 mb-5 border-2 px-2 py-1 border-dashed rounded-lg">S2 Sastra Inggris</h1>
         <div className="flex gap-5 flex-wrap justify-center">
         {dosenSasing.map((item) => (
@@ -85,17 +96,7 @@ export default function Dosen() {
           />
         ))}
         </div>
-        <h1 className="text-lg md:text-xl lg:text-2xl font-bold text-purple-900 mb-5 border-2 border-dashed px-2 py-1 rounded-lg mt-10">S2 Ilmu Komputer</h1>
-        <div className="flex gap-5 flex-wrap justify-center">
-        {dosenIlkom.map((item) => (
-          <CardDosen
-            key={item.id}
-            nama={item.nama}
-            nik={item.nik}
-            foto={item.foto}
-          />
-        ))}
-        </div>
+  
       </main>
     </div>
   );
