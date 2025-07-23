@@ -8,6 +8,7 @@ import "aos/dist/aos.css";
 import AnimatedNumber from "@/components/elements/AnimatedNumber";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import CardFaq from "@/components/cards/CardFaq";
 
 type ContentType = {
   id: string;
@@ -35,7 +36,14 @@ type DataBerita = {
   filepath: string;
   uploudat: string;
 };
+type QuestionAnswer = {
+  id: string;
+  question: string;
+  answer: string;
+  created_at: string;
+};
 export default function Home() {
+  const [dataFaq, setDataFaq] = useState<QuestionAnswer[]>([]);
   const [dataContent, setdataContent] = useState<ContentType[]>([]);
   const [identitas, setIdentitas] = useState<IdentitasType[]>([]);
   const [dataBerita, setDataBerita] = useState<DataBerita[]>([]);
@@ -61,7 +69,9 @@ export default function Home() {
     try {
       const result = await axios.get("/api/content");
       setdataContent(result.data);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleGetPengumuman = async () => {
@@ -81,7 +91,17 @@ export default function Home() {
     }
   };
 
+  const handleGetFaq = async () => {
+    try {
+      const result = await axios.get("/api/faq");
+      setDataFaq(result.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
+    handleGetFaq();
     handleGetBerita();
     handleGetIdentitas();
     handleGetContent();
@@ -150,10 +170,9 @@ export default function Home() {
               {truncateText(
                 dataContent?.find((item) => item.title === "Tentang Fakultas")
                   ?.value || "",
-              
+
                 600
               )}
-             
             </p>
             <ButtonPrimary
               ClassName="bg-purple-900 text-white hover:text-purple-900 hover:bg-white hover:border-2 hover:border-purple-900 font-semibold ease-in-out duration-300 transition-all"
@@ -181,7 +200,10 @@ export default function Home() {
             </h1>
             <h1 className="md:text-lg lg:text-2xl">Program Studi</h1>
           </div>
-          <Link href={"/dosen"} className="flex gap-2 items-center md:gap-4 hover:scale-105 hover:shadow-2xl  ease-in-out duration-300 transition-all">
+          <Link
+            href={"/dosen"}
+            className="flex gap-2 items-center md:gap-4 hover:scale-105 hover:shadow-2xl  ease-in-out duration-300 transition-all"
+          >
             <h1 className="text-2xl md:text-5xl lg:text-6xl ">
               <AnimatedNumber
                 end={Number(
@@ -238,21 +260,43 @@ export default function Home() {
             <hr className="border-t-[3px] border-white w-[50%] md:w-[30%]  mt-5" />
             <div className="flex flex-col gap-5 md:flex-row mt-10 flex-wrap justify-center">
               {dataPengumuman.map((item, index) => (
-                <CardPengumuman key={index} file_path={item.file_path} title={item.title} uploadat={item.uploadat}/>
+                <CardPengumuman
+                  key={index}
+                  file_path={item.file_path}
+                  title={item.title}
+                  uploadat={item.uploadat}
+                />
               ))}
             </div>
           </div>
         </div>
       </div>
 
-      {/* Kenapa Kami */}
-      <div className="flex justify-center items-center py-5 bg-white gap-5 h-fit">
-        
+      {/* FaQ */}
+      <div className="flex flex-col items-center py-5 lg:py-10 bg-white  h-fit">
+        <h1 className="text-xl lg:text-2xl font-bold text-purple-800">FAQ</h1>
+        <div className="flex gap-5 md:gap-10 flex-wrap justify-center mt-10">
+         {dataFaq.slice(0, 4).map((item, index) => (
+           <CardFaq
+             key={index}
+             question={item.question}
+             answer={item.answer}
+           />
+         ))}
+        </div>
+
+        <ButtonPrimary ClassName="mt-5 bg-purple-800 text-white" onClick={() => router.push("/faq")}>
+          Lihat Semua
+        </ButtonPrimary>
+      </div>
+
+      {/* logo */}
+      <div className="flex justify-center items-center py-5 bg-white md:gap-5 h-fit">
         <img
           data-aos="zoom-in-right"
           src="/img/ubg-full.jpg"
           alt="eror"
-          className=" h-28 md:h-48"
+          className=" h-24 md:h-48"
         />
         <div className="h-32 w-[2px] bg-purple-900 mx-2"></div>
         <img
@@ -266,9 +310,8 @@ export default function Home() {
           data-aos="zoom-in-down"
           src="/img/laminfokom.png"
           alt="eror"
-          className=" h-28 md:h-48"
+          className=" h-24 md:h-48"
         />
-        
       </div>
     </div>
   );

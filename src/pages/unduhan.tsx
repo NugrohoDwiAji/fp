@@ -1,13 +1,13 @@
 import CardBerkas from "@/components/cards/CardBerkas";
-import React,{useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 type Berkas = {
-  id : string,
-  title : string,
-  filepath : string,
-  uploadat : string
-}
+  id: string;
+  title: string;
+  filepath: string;
+  uploadat: string;
+};
 
 type IdentitasType = {
   id: string;
@@ -17,15 +17,14 @@ type IdentitasType = {
 
 export default function Unduhan() {
   const [berkas, setberkas] = useState<Berkas[]>([]);
-  const [identitas, setIdentitas] = useState<IdentitasType[] | null>([])
-
+  const [identitas, setIdentitas] = useState<IdentitasType[] | null>([]);
 
   const handleGetIdentitas = async () => {
     try {
       const result = await axios.get("/api/identitas");
       setIdentitas(result.data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
@@ -33,20 +32,18 @@ export default function Unduhan() {
     handleGetIdentitas();
   }, []);
 
+  const handleBerkas = async () => {
+    try {
+      const response = await axios.get("/api/berkas");
+      setberkas(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-const handleBerkas = async() => {
-  try {
-    const response = await axios.get('/api/berkas');
-    setberkas(response.data);
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-
-useEffect(() => {
- handleBerkas();
-}, [])
+  useEffect(() => {
+    handleBerkas();
+  }, []);
 
   return (
     <div className="min-h-screen">
@@ -61,25 +58,22 @@ useEffect(() => {
             Berkas Unduhan
           </h1>
           <h2 className="text-white mt-3">
-            Berkas Penting {identitas?.find((item) => item.name === "Nama Fakultas")?.value} Universitas Bumigora
+            Berkas Penting{" "}
+            {identitas?.find((item) => item.name === "Nama Fakultas")?.value}{" "}
+            Universitas Bumigora
           </h2>
         </div>
       </div>
-       
- <div className="text-purple-900 text-center mt-10 ">
-        <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold">
-          Berkas 
-        </h1>
-    
+
+      <div className="text-purple-900 text-center mt-10 ">
+        <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold">Berkas</h1>
       </div>
       {/* Main */}
       <main className="flex flex-col items-center min-h-64">
-        <div className="flex gap-5 flex-wrap justify-center">
-         {
-          berkas.map((item) => (
+        <div className="flex gap-5 flex-wrap justify-center lg:p-10 p-5">
+          {berkas.map((item) => (
             <CardBerkas key={item.id} title={item.title} link={item.filepath} />
-          ))
-         }
+          ))}
         </div>
       </main>
     </div>

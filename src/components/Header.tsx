@@ -90,7 +90,7 @@ export default function Header({ isScroll }: Props) {
       ],
     },
     {
-      id: 7,
+      id: 3,
       name: "Dosen",
       url: "/dosen",
       action: () => {},
@@ -116,6 +116,13 @@ export default function Header({ isScroll }: Props) {
       id: 6,
       name: "Informasi",
       url: "/informasi",
+      action: () => {},
+      subMenu: [],
+    },
+    {
+      id: 7,
+      name: "FAQ",
+      url: "/faq",
       action: () => {},
       subMenu: [],
     },
