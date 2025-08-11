@@ -29,9 +29,9 @@ export default function CardDosen({nama, nik, foto="/profil.png"}: Props) {
         />
       </div>
       <div className=" flex flex-col justify-evenly w-[14rem] lg:w-[17rem]">
-        <h1 className="font-bold text-lg">{nama}</h1>
+        <h1 className="font-bold text-lg pl-2">{nama}</h1>
         <hr className='border-t-4 border-purple-800 w-full'/>
-        <h2 className="font-semibold">NIK. {nik}</h2>
+        <h2 className="font-semibold pl-2">NIK. {nik}</h2>
       </div>
     </div>
   );

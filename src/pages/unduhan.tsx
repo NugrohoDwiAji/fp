@@ -70,7 +70,7 @@ export default function Unduhan() {
       </div>
       {/* Main */}
       <main className="flex flex-col items-center min-h-64">
-        <div className="flex gap-5 flex-wrap justify-center lg:p-10 p-5">
+        <div className="flex gap-5 flex-wrap justify-start lg:p-10 p-5">
           {berkas.map((item) => (
             <CardBerkas key={item.id} title={item.title} link={item.filepath} />
           ))}

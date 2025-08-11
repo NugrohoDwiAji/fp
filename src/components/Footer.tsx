@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { Phone } from "lucide-react";
@@ -7,7 +7,7 @@ import { Mail } from "lucide-react";
 import { Globe } from "lucide-react";
 import { Facebook } from "lucide-react";
 import { Instagram } from "lucide-react";
-import axios from 'axios';
+import axios from "axios";
 
 type IdentitasType = {
   id: string;
@@ -21,46 +21,51 @@ type ProdiType = {
   link: string;
 };
 
-
-
-
-
 const Footer = () => {
-   const [identitas, setIdentitas] = useState<IdentitasType[] | null>([])
-   const [prodi, setProdi] = useState<ProdiType[] | null>([])
+  const [identitas, setIdentitas] = useState<IdentitasType[] | null>([]);
+  const [prodi, setProdi] = useState<ProdiType[] | null>([]);
 
   const handleGetIdentitas = async () => {
     try {
       const result = await axios.get("/api/identitas");
       setIdentitas(result.data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
-const handleGetProdi = async () => {
+  const handleGetProdi = async () => {
     try {
       const result = await axios.get("/api/prodi");
       setProdi(result.data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
   const icon = [
-  { icon: <Globe />, url: `#` },
-  { icon: <Facebook />, url: `https://${identitas?.find((item) => item.name === "Facebook")?.value}` },
-  { icon: <Instagram />, url: `https://${identitas?.find((item) => item.name === "Instagram")?.value}` },
-];
-  
-  
-
+    { icon: <Globe />, url: `https://universitasbumigora.ac.id` },
+    {
+      icon: <Facebook />,
+      url: `https://${
+        identitas?.find((item) => item.name === "Facebook")?.value
+      }`,
+    },
+    {
+      icon: <Instagram />,
+      url: `https://${
+        identitas?.find((item) => item.name === "Instagram")?.value
+      }`,
+    },
+  ];
 
   const kontak = [
     {
       name: identitas?.find((item) => item.name === "No Handphone")?.value,
       icon: <Phone size={17} />,
-      url: `https://wa.me/+62xxxxxxx${identitas?.find((item) => item.name === "No Handphone")?.value}`,
-    },
+      url: `https://wa.me/+62xxxxxxx${
+        identitas?.find((item) => item.name === "No Handphone")?.value
+      }`,
+    }, 
     {
       name: identitas?.find((item) => item.name === "Nama Fakultas")?.value,
       icon: <User size={17} />,
@@ -73,16 +78,22 @@ const handleGetProdi = async () => {
     },
   ];
 
-    useEffect(() => {
+  useEffect(() => {
     handleGetIdentitas();
     handleGetProdi();
-  }, [])
+  }, []);
   return (
     <footer className="bg-purple-900 text-white flex flex-col items-center">
-      <div className="md:flex justify-between md:gap-16 px-7 pt-5 md:pt-14 md:px-10 pb-10 lg:flex gap-28 lg:text-xl lg:gap-64 lg:w-7xl lg:justify-center">
+      <div className="md:flex md:gap-16 px-7 pt-5 md:pt-14 md:px-10 pb-10 lg:flex gap-28 lg:gap-0  lg:text-xl  lg:w-full justify-center  ">
         {/* alamat dan logo */}
+        <div className="lg:mt-8">
+          <img
+            src="/img/pascasarjana.png"
+            alt=""
+            className="text-white h-28 w-full"
+          />
+        </div>
         <div className="">
-          <img src="/img/ubg-2.png" alt="" className="text-white h-32" />
           <h1 className="text-xl mb-2 lg:mt-0 font-bold">Alamat</h1>
           <p className="lg:w-96">
             Jl. Ismail Marzuki No.22, Cilinaya, Kec. Cakranegara, Kota Mataram,
@@ -90,11 +101,10 @@ const handleGetProdi = async () => {
           </p>
         </div>
 
-
         {/* kontak */}
         <div className="">
           <h1 className="mt-10 md:mt-0 mb-2 text-xl font-bold">Kontak</h1>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 ">
             {kontak.map((item, index) => (
               <Link
                 href={item.url}
@@ -106,11 +116,12 @@ const handleGetProdi = async () => {
               </Link>
             ))}
           </div>
-          <div className="flex gap-2 lg:gap-4 mt-2">
+          <div className="flex gap-2 lg:gap-2 mt-2 border-t-2 pt-2">
             {icon.map((item, index) => (
               <Link
                 key={index}
-                href={item.url}
+                href={item.url} 
+                target="_blank"
                 className="border p-2 rounded-full hover:text-purple-900 hover:bg-white hover:cursor-pointer"
               >
                 {item.icon}
@@ -121,7 +132,9 @@ const handleGetProdi = async () => {
       </div>
       <div className="w-[80%]">
         <hr />
-        <h1 className="text-center py-4">© 2025 PUSTIK | Developed & Deployed by Nugroho Dwi Aji | Built with Next.js</h1>
+        <h1 className="text-center py-4">
+         2025 © universitasbumigora.ac.id, All Right Reserved. <br />Develop and Modify by PUSTIK UBG
+        </h1>
       </div>
     </footer>
   );

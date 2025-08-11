@@ -9,6 +9,7 @@ import AnimatedNumber from "@/components/elements/AnimatedNumber";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import CardFaq from "@/components/cards/CardFaq";
+import Carausel from "@/components/Carausel";
 
 type ContentType = {
   id: string;
@@ -154,8 +155,8 @@ export default function Home() {
           Tentang Fakultas
         </h1>
         <hr className="border-t-[3px] border-purple-900 w-[50%] md:w-[25%] lg:w-[14%] lg:mb-5 " />
-        <div className="md:flex gap-5 justify-between lg:px-14 md:h-[28rem] pb-10">
-          <div className="h-full flex items-center justify-center w-[40%] ">
+        <div className="md:flex gap-32 justify-center lg:px-14 md:h-[28rem] pb-10 ">
+          <div className="h-full flex items-center justify-end w-[40%]  ">
             <img
               data-aos="flip-left"
               data-aos-easing="ease-out-cubic"
@@ -236,17 +237,29 @@ export default function Home() {
           Berita
         </h1>
         <hr className="border-t-[3px] border-purple-900 w-[20%] md:w-[15%] lg:w-[6%]  mb-5" />
-        <div className="flex gap-10 flex-wrap justify-center">
-          {dataBerita.map((item, index) => (
-            <CardBerita
-              key={index}
-              img={item.filepath}
-              content={item.description}
-              title={item.title}
-              date={item.uploudat}
-              id={item.id}
-            />
-          ))}
+        <div className="w-full">
+          <Carausel>
+            {dataBerita.map((item, index) => (
+              <div key={index} className="my-4">
+                <CardBerita
+                  key={index}
+                  img={item.filepath}
+                  content={item.description}
+                  title={item.title}
+                  date={item.uploudat}
+                  id={item.id}
+                />
+              </div>
+            ))}
+          </Carausel>
+          <div className="mt-10 w-full flex justify-center">
+            <ButtonPrimary
+              ClassName="hover:bg-purple-900 m-auto hover:text-white text-purple-900 bg-white border-2 border-purple-900 font-semibold ease-in-out duration-300 transition-all"
+              onClick={() => router.push("/berita")}
+            >
+              Selengkapnya
+            </ButtonPrimary>
+          </div>
         </div>
       </div>
 
@@ -258,15 +271,25 @@ export default function Home() {
               Pengumuman
             </h1>
             <hr className="border-t-[3px] border-white w-[50%] md:w-[30%]  mt-5" />
-            <div className="flex flex-col gap-5 md:flex-row mt-10 flex-wrap justify-center">
-              {dataPengumuman.map((item, index) => (
-                <CardPengumuman
-                  key={index}
-                  file_path={item.file_path}
-                  title={item.title}
-                  uploadat={item.uploadat}
-                />
-              ))}
+            <div className="w-screen mt-16">
+              <Carausel>
+                {dataPengumuman.map((item, index) => (
+                  <CardPengumuman
+                    key={index}
+                    file_path={item.file_path}
+                    title={item.title}
+                    uploadat={item.uploadat}
+                  />
+                ))}
+              </Carausel>
+               <div className="mt-10 w-full flex justify-center">
+            <ButtonPrimary
+              ClassName="hover:bg-purple-900 m-auto hover:text-white text-purple-900 bg-white border-2 border-purple-900 font-semibold ease-in-out duration-300 transition-all"
+              onClick={() => router.push("/pengumuman")}
+            >
+              Selengkapnya
+            </ButtonPrimary>
+          </div>
             </div>
           </div>
         </div>
@@ -275,42 +298,45 @@ export default function Home() {
       {/* FaQ */}
       <div className="flex flex-col items-center py-5 lg:py-10 bg-white  h-fit">
         <h1 className="text-xl lg:text-2xl font-bold text-purple-800">FAQ</h1>
-        <div className="flex gap-5 md:gap-10 flex-wrap justify-center mt-10">
-         {dataFaq.slice(0, 4).map((item, index) => (
-           <CardFaq
-             key={index}
-             question={item.question}
-             answer={item.answer}
-           />
-         ))}
+        <div className="flex gap-5 md:gap-2 flex-wrap justify-center mt-10">
+          {dataFaq.slice(0, 4).map((item, index) => (
+            <CardFaq
+              key={index}
+              question={item.question}
+              answer={item.answer}
+            />
+          ))}
         </div>
 
-        <ButtonPrimary ClassName="mt-5 bg-purple-800 text-white" onClick={() => router.push("/faq")}>
+        <ButtonPrimary
+          ClassName="mt-5 bg-purple-800 text-white"
+          onClick={() => router.push("/faq")}
+        >
           Lihat Semua
         </ButtonPrimary>
       </div>
 
       {/* logo */}
-      <div className="flex justify-center items-center py-5 bg-white md:gap-5 h-fit">
+      <div className="flex justify-center items-center pb-5 bg-white md:gap-5 h-fit ">
         <img
           data-aos="zoom-in-right"
           src="/img/ubg-full.jpg"
           alt="eror"
-          className=" h-24 md:h-48"
+          className=" h-24 md:h-36"
         />
         <div className="h-32 w-[2px] bg-purple-900 mx-2"></div>
         <img
           data-aos="zoom-in-left"
           src="/img/banpt.png"
           alt="eror"
-          className="h-20 md:h-36"
+          className="h-20 md:h-32"
         />
         <div className="h-32 w-[2px] bg-purple-900 mx-2"></div>
         <img
           data-aos="zoom-in-down"
           src="/img/laminfokom.png"
           alt="eror"
-          className=" h-24 md:h-48"
+          className=" h-24 md:h-32"
         />
       </div>
     </div>
