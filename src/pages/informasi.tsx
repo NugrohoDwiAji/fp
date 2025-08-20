@@ -44,20 +44,20 @@ const [identitas, setIdentitas] = useState<IdentitasType[] | null>([])
     <div className="min-h-screen">
       <div className="relative h-80 md:h-96 lg:h-[35rem]">
         <img
-          src="/img/banner-pasca.png"
+          src="/img/banner-ft.png"
           alt=""
           className="w-full bg-cover h-full"
         />
         <div className="absolute top-0 left-0 right-0 bottom-0 flex flex-col justify-center p-10 -mt-9 md:-mt-20 lg:-mt-36">
-          <h1 className="text-white text-3xl md:text-5xl lg:text-6xl font-bold">
+          <h1 className="bg-gradient-to-r from-blue-700 to-purple-800 text-transparent bg-clip-text w-fit text-3xl md:text-5xl lg:text-6xl font-bold">
             Informasi
           </h1>
-          <h2 className="text-white mt-3">
+          <h2 className="text-gray-700 mt-3">
             Informasi {identitas?.find((item) => item.name === "Nama Fakultas")?.value} Universitas Bumigora
           </h2>
         </div>
       </div>
-      <div className="text-purple-900 text-center mt-10 ">
+      <div className="text-blue-700 text-center mt-10 ">
         <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold">
           Informasi
         </h1>

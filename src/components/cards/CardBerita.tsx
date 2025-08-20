@@ -44,7 +44,7 @@ const truncateText = (text: string, maxLength: number) => {
       </div>
       <div className="flex justify-between items-center">
 
-      <ButtonPrimary ClassName="w-fit py-2 bg-purple-950 text-white rounded-md hover:border-2 hover:border-purple-950 hover:bg-white hover:font-semibold hover:text-purple-950" onClick={() => {router.push(`/details/${id}`)}}>
+      <ButtonPrimary ClassName="w-fit py-2 bg-blue-950 text-white rounded-md hover:border-2 hover:border-blue-950 hover:bg-white hover:font-semibold hover:text-blue-950" onClick={() => {router.push(`/details/${id}`)}}>
         Selengkapnya
       </ButtonPrimary>
       <h6 className="text-sm text-gray-600">{date=format(new Date(date), "yyyy-MM-dd")}</h6>

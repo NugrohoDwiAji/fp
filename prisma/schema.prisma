@@ -14,7 +14,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Visit {
+model visit {
   id        Int      @id @default(autoincrement())
   ipAddress String   @map("ip_address")
   userAgent String   @map("user_agent")
@@ -22,7 +22,7 @@ model Visit {
   visitedAt DateTime @default(now()) @map("visited_at")
 }
 
-model User {
+model user {
   id        String   @id @default(uuid())
   username  String   @unique
   password  String
@@ -30,20 +30,20 @@ model User {
   updatedAt DateTime @updatedAt
 }
 
-model Content {
+model content {
   id    String @id @default(uuid())
   title String
   value String @db.LongText
 }
 
-model Berkas {
+model berkas {
   id       String   @id @default(uuid())
   title    String
   filepath String
   uploadat DateTime @default(now())
 }
 
-model Berita {
+model berita {
   id        String   @id @default(uuid())
   title     String
   description String @db.LongText
@@ -51,21 +51,21 @@ model Berita {
   uploudat  DateTime 
 }
 
-model Pengumuman {
+model pengumuman {
   id String @id @default(uuid())
   title String
   file_path String
   uploadat DateTime 
 }
 
-model Identitas {
+model identitas {
     id String @id @default(uuid())
     name String @unique
     value String
 }
 
 
-model Prodi{
+model prodi{
     id String @id @default(uuid())
     nama String
     link String

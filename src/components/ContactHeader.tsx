@@ -32,7 +32,7 @@ export default function ContactHeader({ isScroll }: Props) {
   return (
     <div
       className={`h-14 w-full text-white flex justify-between px-6 md:px-8 lg:px-24 ${
-        isScroll ? "hidden" : "bg-purple-900"
+        isScroll ? "hidden" : "bg-gradient-to-r from-blue-700 to-purple-800"
       } ease-in-out duration-300 transition-all`}
     >
       <div className="flex items-center gap-5 text-xs md:text-base ">

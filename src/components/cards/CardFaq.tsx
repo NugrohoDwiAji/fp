@@ -9,10 +9,10 @@ type Props = {
 const CardFaq = ({question, answer}: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="bg-white max-w-sm md:max-w-xl lg:max-w-3xl relative shadow-2xl h-fit rounded-lg border-purple-300 border-2 border-collapse w-fit">
+    <div className="bg-white max-w-sm md:max-w-xl lg:max-w-3xl relative shadow-2xl h-fit rounded-lg border-blue-300 border-2 border-collapse w-fit">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="cursor-pointer w-full text-start font-bold text-lg md:text-xl  text-gray-900 ring-2 ring-purple-500 rounded-lg px-10 py-2"
+        className="cursor-pointer w-full text-start font-bold text-lg md:text-xl  text-gray-900 ring-2 ring-blue-500 rounded-lg px-10 py-2"
       >
         <h1>
          {question}
@@ -35,7 +35,7 @@ const CardFaq = ({question, answer}: Props) => {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={`absolute right-4 top-2  cursor-pointer transform transition-all duration-300  ${
-          isOpen ? "rotate-180 text-gray-600" : " text-purple-600"
+          isOpen ? "rotate-180 text-gray-600" : " text-blue-600"
         }`}
       >
         <ChevronDown />

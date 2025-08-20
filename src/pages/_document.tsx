@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html lang="en">
       <link rel="shortcut icon" href="/img/ubg.png" type="image/x-icon" />
-      <title>Pascasarjana UBG</title>
+      <title>Fakultas Teknik UBG</title>
       <Head />
       <body className="antialiased">
         <Main />

@@ -18,7 +18,7 @@ export default function Header() {
         <span className="mr-2">Admin</span>
         <ButtonPrimary
           onClick={handleLogout}
-          ClassName="bg-purple-500 text-white p-2 rounded"
+          ClassName="bg-red-500 text-white p-2 rounded"
         >
           Log Out
         </ButtonPrimary>

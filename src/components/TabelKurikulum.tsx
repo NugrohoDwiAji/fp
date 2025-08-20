@@ -12,12 +12,12 @@ export default function TabelKurikulum({ no, nama_matakuliah, sks,id_matkul, kod
       <tr
         key={id_matkul}
         className={`${
-         no % 2 === 0 ? "bg-purple-80" : "bg-white"
-        } hover:bg-purple-50 transition-colors duration-200`}
+         no % 2 === 0 ? "bg-blue-80" : "bg-white"
+        } hover:bg-blue-50 transition-colors duration-200`}
       >
-        <td className=" px-2 md:px-6 py-4 text-purple-800 font-semibold">{no}</td>
+        <td className=" px-2 md:px-6 py-4 text-blue-800 font-semibold">{no}</td>
         <td className="px-6 py-4">
-          <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">
+          <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
             {kode_matakuliah}
           </span>
         </td>

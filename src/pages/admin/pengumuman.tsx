@@ -112,7 +112,7 @@ export default function Pengumuman() {
     <AdminLayout>
       <h1 className="text-4xl text-gray-600 ">Pengumuman</h1>
       <ButtonPrimary
-        ClassName="bg-purple-500 text-white hover:border-2 hover:border-purple-500 hover:bg-white hover:text-purple-500 ease-in-out duration-300 transition-all mt-5"
+        ClassName="bg-blue-500 text-white hover:border-2 hover:border-blue-500 hover:bg-white hover:text-blue-500 ease-in-out duration-300 transition-all mt-5"
         onClick={() => setIsInput(!isInput)}
       >
         {isInput ? "Cancel" : "Input"}
@@ -127,7 +127,7 @@ export default function Pengumuman() {
               type="text"
               id="title"
               value={title}
-              className="p-2 bg-white h-10  rounded-md border-2 border-purple-400  font-bold focus:outline-purple-600"
+              className="p-2 bg-white h-10  rounded-md border-2 border-blue-400  font-bold focus:outline-blue-600"
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
@@ -136,7 +136,7 @@ export default function Pengumuman() {
             <input
               type="date"
               id="uploadat"
-              className="p-2 bg-white h-10  rounded-md border-2 border-purple-400  font-bold focus:outline-purple-600"
+              className="p-2 bg-white h-10  rounded-md border-2 border-blue-400  font-bold focus:outline-blue-600"
               onChange={(e) => setUploadat(new Date(e.target.value))}
             />
           </div>
@@ -148,7 +148,7 @@ export default function Pengumuman() {
                 onClick={() =>
                   isUpdate.status ? handleUpdate(isUpdate.id) : handleSave()
                 }
-                ClassName="bg-purple-600 text-white"
+                ClassName="bg-blue-600 text-white"
               >
                 Simpan
               </ButtonPrimary>
@@ -167,16 +167,16 @@ export default function Pengumuman() {
       <table className="table-fixed border-collapse mt-10  m-auto rounded-2xl">
         <thead className="text-white">
           <tr className="">
-            <th className="lg:w-10 py-2 bg-purple-600 rounded-tl-md border-xl border-gray-300 ">
+            <th className="lg:w-10 py-2 bg-blue-600 rounded-tl-md border-xl border-gray-300 ">
               No
             </th>
-            <th className=" lg:w-lg bg-purple-600 border-x border-gray-300 ">
+            <th className=" lg:w-lg bg-blue-600 border-x border-gray-300 ">
               Judul Pengumuman
             </th>
-            <th className=" lg:w-lg bg-purple-600 border-x border-gray-300 ">
+            <th className=" lg:w-lg bg-blue-600 border-x border-gray-300 ">
               File
             </th>
-            <th className=" lg:w-56 bg-purple-600 rounded-tr-md border-gray-300 ">
+            <th className=" lg:w-56 bg-blue-600 rounded-tr-md border-gray-300 ">
               Action
             </th>
           </tr>
@@ -184,14 +184,14 @@ export default function Pengumuman() {
         <tbody>
           {datas?.map((item, index) => (
             <tr key={index} className="border-b border-x border-gray-300">
-              <td className="py-2 text-center bg-purple-100">{index + 1}</td>
-              <td className="py-2 px-2 border-x border-gray-300 bg-purple-100">
+              <td className="py-2 text-center bg-blue-100">{index + 1}</td>
+              <td className="py-2 px-2 border-x border-gray-300 bg-blue-100">
                 {item.title}
               </td>
-              <td className="py-2 px-2 border-x border-gray-300 bg-purple-100">
+              <td className="py-2 px-2 border-x border-gray-300 bg-blue-100">
                 {item.file_path}
               </td>
-              <td className="py-2 text-center bg-purple-100 flex gap-2 justify-center">
+              <td className="py-2 text-center bg-blue-100 flex gap-2 justify-center">
                 <ButtonPrimary
                   ClassName="bg-yellow-500 text-white"
                   onClick={() => handleGetById(item.id)}

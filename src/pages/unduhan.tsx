@@ -47,9 +47,9 @@ export default function Unduhan() {
 
   return (
     <div className="min-h-screen">
-      <div className="relative h-80 md:h-96 lg:h-[35rem]">
+      <div className="relative h-80 md:h-96 lg:h-[38rem]">
         <img
-          src="/img/banner-pasca.png"
+          src="/img/banner-ft.png"
           alt=""
           className="w-full bg-cover h-full"
         />
@@ -65,7 +65,7 @@ export default function Unduhan() {
         </div>
       </div>
 
-      <div className="text-purple-900 text-center mt-10 ">
+      <div className="text-blue-700 text-center mt-10 ">
         <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold">Berkas</h1>
       </div>
       {/* Main */}
