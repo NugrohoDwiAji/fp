@@ -43,7 +43,7 @@ const prisma = new PrismaClient();
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const results = await prisma.$queryRaw<VisitData[]>`
-    SELECT DATE(visited_at) as date, COUNT(*) as count FROM Visit GROUP BY DATE(visited_at) ORDER BY date DESC LIMIT 14`;
+    SELECT DATE(visited_at) as date, COUNT(*) as count FROM visit GROUP BY DATE(visited_at) ORDER BY date DESC LIMIT 14`;
   const data = results
     .map((item) => ({
       date: format(new Date(item.date), "yyyy-MM-dd"),
