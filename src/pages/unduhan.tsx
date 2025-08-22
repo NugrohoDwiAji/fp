@@ -47,17 +47,17 @@ export default function Unduhan() {
 
   return (
     <div className="min-h-screen">
-      <div className="relative h-80 md:h-96 lg:h-[38rem]">
+      <div className="relative h-80 md:h-96 lg:h-[43rem]">
         <img
-          src="/img/banner-ft.png"
+          src="/img/banner-feb.png"
           alt=""
           className="w-full bg-cover h-full"
         />
         <div className="absolute top-0 left-0 right-0 bottom-0 flex flex-col justify-center p-10 -mt-9 md:-mt-20 lg:-mt-36">
-          <h1 className="text-white text-3xl md:text-5xl lg:text-6xl font-bold">
+          <h1 className="text-white text-3xl md:text-5xl lg:text-6xl font-bold text-shadow-lg/20">
             Berkas Unduhan
           </h1>
-          <h2 className="text-white mt-3">
+          <h2 className="text-white mt-3 text-shadow-lg">
             Berkas Penting{" "}
             {identitas?.find((item) => item.name === "Nama Fakultas")?.value}{" "}
             Universitas Bumigora
@@ -65,7 +65,7 @@ export default function Unduhan() {
         </div>
       </div>
 
-      <div className="text-blue-700 text-center mt-10 ">
+      <div className="text-cyan-400 text-shadow-lg text-center mt-10 ">
         <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold">Berkas</h1>
       </div>
       {/* Main */}

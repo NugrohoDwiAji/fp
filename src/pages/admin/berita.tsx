@@ -81,10 +81,10 @@ export default function Berita() {
 
   return (
     <AdminLayout>
-      <h1 className="text-4xl text-gray-600 ">Berita</h1>
+      <h1 className="text-4xl text-cyan-400 ">Berita</h1>
       <div className="flex gap-5">
         <ButtonPrimary
-          ClassName="text-white bg-blue-600 hover:bg-white hover:text-blue-600 hover:border-2 hover:border-blue-600 ease-in-out duration-300 transition-all mt-5"
+          ClassName="text-white bg-cyan-400 hover:bg-white hover:text-cyan-400 hover:border-2 hover:border-cyan-400 ease-in-out duration-300 transition-all mt-5"
           onClick={() => setIsInput(!isInput)}
         >
           {isInput ? "Batal" : "Input Berita"}
@@ -111,7 +111,7 @@ export default function Berita() {
                 onChange={(e) =>
                   setPushData({ ...pushData, title: e.target.value })
                 }
-                className="bg-white p-2 focus:outline-blue-600 rounded-lg outline-blue-100 outline-2"
+                className="bg-white p-2 focus:outline-cyan-400 rounded-lg outline-blue-100 outline-2"
               />
             </div>
             <div className="flex items-center gap-5 ">
@@ -122,12 +122,12 @@ export default function Berita() {
                 onChange={(e) =>
                   setPushData({ ...pushData, description: e.target.value })
                 }
-                className="bg-white h-40 p-2 focus:outline-blue-600 rounded-lg outline-blue-100 outline-2 w-96 "
+                className="bg-white h-40 p-2 focus:outline-cyan-400 rounded-lg outline-blue-100 outline-2 w-96 "
               ></textarea>
             </div>
             <div className="flex items-center gap-5 ">
               <label htmlFor="" >Tanggal</label>
-              <input type="date" onChange={(e) => setPushData({ ...pushData, tanggal:new Date(e.target.value)})} className="bg-white p-2 focus:outline-blue-600 rounded-lg outline-blue-100 outline-2" />
+              <input type="date" onChange={(e) => setPushData({ ...pushData, tanggal:new Date(e.target.value)})} className="bg-white p-2 focus:outline-cyan-400 rounded-lg outline-blue-100 outline-2" />
             </div>
           </div>
         </div>
@@ -136,22 +136,22 @@ export default function Berita() {
       <table className="table-fixed border-collapse mt-10  m-auto rounded-2xl">
         <thead className="text-white">
           <tr className="">
-            <th className="lg:w-10 py-2 bg-blue-600 rounded-tl-md border-xl border-gray-300 ">
+            <th className="lg:w-10 py-2 bg-cyan-400 rounded-tl-md border-xl border-gray-300 ">
               No
             </th>
-            <th className=" lg:w-60 bg-blue-600 border-x border-gray-300 ">
+            <th className=" lg:w-60 bg-cyan-400 border-x border-gray-300 ">
               Judul Berita
             </th>
-            <th className=" lg:w-2xl bg-blue-600 border-x border-gray-300 ">
+            <th className=" lg:w-2xl bg-cyan-400 border-x border-gray-300 ">
               Deskripsi
             </th>
-            <th className=" lg:w-2xl bg-blue-600 border-x border-gray-300 ">
+            <th className=" lg:w-2xl bg-cyan-400 border-x border-gray-300 ">
               Gambar
             </th>
-            <th className=" lg:w-2xl bg-blue-600 border-x border-gray-300 ">
+            <th className=" lg:w-2xl bg-cyan-400 border-x border-gray-300 ">
               Tanggal Upload
             </th>
-            <th className=" lg:w-56 bg-blue-600 rounded-tr-md border-gray-300 ">
+            <th className=" lg:w-56 bg-cyan-400 rounded-tr-md border-gray-300 ">
               Action
             </th>
           </tr>

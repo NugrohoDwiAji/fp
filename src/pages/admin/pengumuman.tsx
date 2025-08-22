@@ -110,9 +110,9 @@ export default function Pengumuman() {
 
   return (
     <AdminLayout>
-      <h1 className="text-4xl text-gray-600 ">Pengumuman</h1>
+      <h1 className="text-4xl text-cyan-400 text-shadow-lg/10">Pengumuman</h1>
       <ButtonPrimary
-        ClassName="bg-blue-500 text-white hover:border-2 hover:border-blue-500 hover:bg-white hover:text-blue-500 ease-in-out duration-300 transition-all mt-5"
+        ClassName="bg-cyan-400 text-white hover:border-2 hover:border-cyan-400 hover:bg-white hover:text-cyan-400 ease-in-out duration-300 transition-all mt-5"
         onClick={() => setIsInput(!isInput)}
       >
         {isInput ? "Cancel" : "Input"}
@@ -127,7 +127,7 @@ export default function Pengumuman() {
               type="text"
               id="title"
               value={title}
-              className="p-2 bg-white h-10  rounded-md border-2 border-blue-400  font-bold focus:outline-blue-600"
+              className="p-2 bg-white h-10  rounded-md border-2 border-cyan-400  font-bold focus:outline-cyan-400"
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
@@ -136,7 +136,7 @@ export default function Pengumuman() {
             <input
               type="date"
               id="uploadat"
-              className="p-2 bg-white h-10  rounded-md border-2 border-blue-400  font-bold focus:outline-blue-600"
+              className="p-2 bg-white h-10  rounded-md border-2 border-cyan-400  font-bold focus:outline-cyan-400"
               onChange={(e) => setUploadat(new Date(e.target.value))}
             />
           </div>
@@ -148,7 +148,7 @@ export default function Pengumuman() {
                 onClick={() =>
                   isUpdate.status ? handleUpdate(isUpdate.id) : handleSave()
                 }
-                ClassName="bg-blue-600 text-white"
+                ClassName="bg-cyan-400 text-white"
               >
                 Simpan
               </ButtonPrimary>
@@ -167,16 +167,16 @@ export default function Pengumuman() {
       <table className="table-fixed border-collapse mt-10  m-auto rounded-2xl">
         <thead className="text-white">
           <tr className="">
-            <th className="lg:w-10 py-2 bg-blue-600 rounded-tl-md border-xl border-gray-300 ">
+            <th className="lg:w-10 py-2 bg-cyan-400 rounded-tl-md border-xl border-gray-300 ">
               No
             </th>
-            <th className=" lg:w-lg bg-blue-600 border-x border-gray-300 ">
+            <th className=" lg:w-lg bg-cyan-400 border-x border-gray-300 ">
               Judul Pengumuman
             </th>
-            <th className=" lg:w-lg bg-blue-600 border-x border-gray-300 ">
+            <th className=" lg:w-lg bg-cyan-400 border-x border-gray-300 ">
               File
             </th>
-            <th className=" lg:w-56 bg-blue-600 rounded-tr-md border-gray-300 ">
+            <th className=" lg:w-56 bg-cyan-400 rounded-tr-md border-gray-300 ">
               Action
             </th>
           </tr>

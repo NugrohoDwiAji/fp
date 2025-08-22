@@ -45,17 +45,17 @@ const Faq = () => {
   }, []);
     return (
       <div className="min-h-screen">
-        <div className="relative h-80 md:h-96 lg:h-[35rem]">
+        <div className="relative h-80 md:h-96 lg:h-[43rem]">
           <img
-            src="/img/banner-ft.png"
+            src="/img/banner-feb.png"
             alt=""
             className="w-full bg-cover h-full"
           />
           <div className="absolute top-0 left-0 right-0 bottom-0 flex flex-col justify-center p-10 -mt-9 md:-mt-20 lg:-mt-36">
-            <h1 className="bg-gradient-to-r from-blue-700 to-purple-800 text-transparent bg-clip-text w-fit text-3xl md:text-5xl lg:text-6xl font-bold">
+            <h1 className="text-white text-shadow-lg/20 w-fit text-3xl md:text-5xl lg:text-6xl font-bold">
               Frequently Asked Questions
             </h1>
-            <h2 className="text-gray-700 mt-3">
+            <h2 className="text-white text-shadow-lg/10 mt-3">
               FAQ
               {identitas?.find((item) => item.name === "Nama Fakultas")?.value}{" "}
               Universitas Bumigora
@@ -63,7 +63,7 @@ const Faq = () => {
           </div>
         </div>
   
-        <div className="text-blue-700 text-center mt-10 ">
+        <div className="text-cyan-400 text-shadow-lg/20 text-center mt-10 ">
           <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold">FAQ</h1>
         </div>
         {/* Main */}

@@ -43,7 +43,7 @@ export default function ModalEdit({
             <label htmlFor="title">Title</label>
             <h1
               id="title"
-              className="py-2 px-10 border rounded-md text-white bg-purple-600 font-bold"
+              className="py-2 px-10 border rounded-md text-white bg-cyan-400 font-bold"
             >
               {title || "Title"}
             </h1>
@@ -51,7 +51,7 @@ export default function ModalEdit({
           <div className="flex justify-between">
             <label htmlFor="value">Value</label>
             <textarea
-              className="bg-white h-32 w-96 border p-2 border-purple-600 focus:ring-purple-600 inert:ring-purple-600"
+              className="bg-white h-32 w-96 border p-2 border-cyan-400 focus:ring-cyan-400 inert:ring-cyan-400"
               value={value}
               placeholder="Silahakan Masukkan Value di Sini..."
               onChange={(e) => setValue(e.target.value)}

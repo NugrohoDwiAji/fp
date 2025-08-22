@@ -50,20 +50,20 @@ const handleEdit = async (id: string) =>{
 
   return (
     <AdminLayout>
-      <h1 className="text-4xl text-gray-600 ">Content</h1>
+      <h1 className="text-4xl text-cyan-400 text-shadow-lg/10">Content</h1>
       <table className="table-fixed border-collapse mt-10  m-auto rounded-2xl">
         <thead className="text-white">
           <tr className="">
-            <th className="lg:w-10 py-2 bg-blue-600 rounded-tl-md border-xl border-gray-300 ">
+            <th className="lg:w-10 py-2 bg-cyan-400 rounded-tl-md border-xl border-gray-300 ">
               No
             </th>
-            <th className=" lg:w-60 bg-blue-600 border-x border-gray-300 ">
+            <th className=" lg:w-60 bg-cyan-400 border-x border-gray-300 ">
               Title
             </th>
-            <th className=" lg:w-2xl bg-blue-600 border-x border-gray-300 ">
+            <th className=" lg:w-2xl bg-cyan-400 border-x border-gray-300 ">
               Description
             </th>
-            <th className=" lg:w-56 bg-blue-600 rounded-tr-md border-gray-300 ">
+            <th className=" lg:w-56 bg-cyan-400 rounded-tr-md border-gray-300 ">
               Action
             </th>
           </tr>

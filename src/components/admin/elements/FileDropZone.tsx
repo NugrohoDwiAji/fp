@@ -38,7 +38,7 @@ const FileDropzone: React.FC<FileDropzoneProps> = ({ onDrop}) => {
         {...getRootProps()}
         className={`border-2 border-dashed rounded-xl p-16 text-center cursor-pointer transition w-2xl m-auto ${
           isDragActive || selectedFile
-            ? "bg-blue-100 border-blue-400"
+            ? "bg-blue-100 border-cyan-400"
             : "bg-white border-gray-300"
         } `}
       >

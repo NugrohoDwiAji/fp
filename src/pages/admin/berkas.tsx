@@ -106,11 +106,11 @@ export default function Berkas() {
 
   return (
     <AdminLayout>
-      <h1 className="text-2xl font-semibold text-gray-600">
+      <h1 className="text-2xl font-semibold text-cyan-400 text-shadow-lg/10">
         Penginputan Berkas
       </h1>
       <ButtonPrimary
-        ClassName="hover:border-dashed hover:border-2 bg-blue-600 hover:border-blue-600 mt-5 hover:text-blue-600 hover:bg-white  text-white font-semibold "
+        ClassName="hover:border-dashed hover:border-2 bg-cyan-400 hover:border-cyan-400 mt-5 hover:text-cyan-400 hover:bg-white  text-white font-semibold "
         onClick={() => setIsInput(!isInput)}
       >
         {isInput ? "Close" : "Input"}
@@ -123,7 +123,7 @@ export default function Berkas() {
               type="text"
               value={title}
               id="title"
-              className="p-2 bg-white h-10  rounded-md border-2 border-blue-400  font-bold focus:outline-blue-600"
+              className="p-2 bg-white h-10  rounded-md border-2 border-blue-400  font-bold focus:outline-cyan-400"
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
@@ -134,7 +134,7 @@ export default function Berkas() {
         <div className="flex gap-5 w-full justify-center mt-5">
           <ButtonPrimary
             onClick={()=>{isUpdate.status? handleUpdate(isUpdate.id) :handleSave() }}
-            ClassName="bg-blue-600 text-white"
+            ClassName="bg-cyan-400 text-white"
           >
             Simpan
           </ButtonPrimary>
@@ -152,13 +152,13 @@ export default function Berkas() {
       <table className="table-fixed border-collapse mt-10 m-auto rounded-2xl">
         <thead className="text-white">
           <tr className="">
-            <th className="lg:w-10 py-2 bg-blue-500 rounded-tl-md border-r border-gray-300 ">
+            <th className="lg:w-10 py-2 bg-cyan-400 rounded-tl-md border-r border-gray-300 ">
               No
             </th>
-            <th className=" lg:w-4xl bg-blue-500 border-x border-gray-300 ">
+            <th className=" lg:w-4xl bg-cyan-400 border-x border-gray-300 ">
               Title
             </th>
-            <th className=" lg:w-80 bg-blue-500 rounded-tr-md border-gray-300 ">
+            <th className=" lg:w-80 bg-cyan-400 rounded-tr-md border-gray-300 ">
               Action
             </th>
           </tr>
