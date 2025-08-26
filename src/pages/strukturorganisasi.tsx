@@ -26,17 +26,17 @@ export default function StrukturOrganisasi() {
     <div>
       {/* jumbotron */}
       <div className="relative h-80 md:h-96 lg:h-[35rem]">
-        <img src="/img/banner-ft.png" alt="" className="w-full bg-cover h-full" />
+        <img src="/img/banner-fp.png" alt="" className="w-full bg-cover h-full" />
        <div className="absolute top-0 left-0 right-0 bottom-0 flex flex-col justify-center p-10 -mt-9 md:-mt-20 lg:-mt-36 ">
-          <h1 className="text-white text-3xl md:text-5xl lg:text-6xl font-bold">
+          <h1 className="text-white text-3xl md:text-5xl lg:text-6xl font-bold text-shadow-lg/20">
             Struktur Organisasi
           </h1>
-          <h2 className="text-white mt-3">
+          <h2 className="text-white mt-3 text-shadow-lg">
             Struktur Organisasi {identitas?.find((item) => item.name === "Nama Fakultas")?.value} Universitas Bumigora
           </h2>
         </div>
       </div>
- <div className="text-blue-700 text-center mt-10 ">
+ <div className="text-yellow-500 text-shadow-lg/10 text-center mt-10 ">
         <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold">
           Struktur Organisasi
         </h1>
