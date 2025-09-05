@@ -49,13 +49,13 @@ export default function Visimisi() {
   return (
     <div className="">
       {/* jumbotron */}
-      <div className="relative h-60 md:h-96 lg:h-[43rem] ">
+      <div className="relative h-44 md:h-96 lg:h-[43rem] ">
         <img
           src="/img/banner-fp.png"
           alt=""
           className="w-full bg-cover h-full"
         />
-        <div className="absolute top-0 left-0 right-0 bottom-0 flex flex-col justify-center p-10 -mt-9 md:-mt-20 lg:-mt-36 ">
+        <div className="absolute top-16 md:top-32 lg:top-72 left-0 right-0 flex flex-col justify-center p-5 md:p-10 -mt-9 md:-mt-20 lg:-mt-36 leading-2 md:leading-3 lg:leading-4">
           <h1 className="text-white text-shadow-lg/30 w-fit text-3xl md:text-5xl lg:text-6xl font-bold">
             Visi Dan Misi
           </h1>
@@ -66,7 +66,7 @@ export default function Visimisi() {
           </h2>
         </div>
       </div>
-      <div className="text-yellow-500 text-shadow-lg/20 text-center mt-10 ">
+      <div className="text-yellow-400 text-shadow-lg/20 text-center mt-10 ">
         <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold">
           Visi dan Misi
         </h1>
@@ -75,7 +75,7 @@ export default function Visimisi() {
       {/* main */}
       <main className="px-5 text-justify my-10 md:my-12 md:max-w-xl lg:max-w-4xl m-auto ">
         <div>
-          <h1 className="font-bold text-xl md:text-2xl mb-2 text-yellow-500 text-shadow-lg">
+          <h1 className="font-bold text-xl md:text-2xl mb-2 text-yellow-400 text-shadow-lg">
             Visi
           </h1>
           <p className="text-lg">
@@ -83,7 +83,7 @@ export default function Visimisi() {
           </p>
         </div>
         <div>
-          <h1 className="font-bold mt-10 text-xl md:text-2xl mb-2 text-yellow-500 text-shadow-lg whitespace-pre-line">
+          <h1 className="font-bold mt-10 text-xl md:text-2xl mb-2 text-yellow-400 text-shadow-lg whitespace-pre-line">
             Misi
           </h1>
           <ul className="space-y-2 text-lg text-justify list-decimal ml-5 ">

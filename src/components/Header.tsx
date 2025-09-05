@@ -175,7 +175,7 @@ export default function Header({ isScroll }: Props) {
             </Link>
             {subActive === item.name && (
               <div
-                className={`flex flex-col gap-3 absolute mt-2 bg-gradient-to-r from-yellow-600 to-yellow-500  rounded-lg ${
+                className={`flex flex-col gap-3 absolute mt-2 bg-gradient-to-r from-yellow-500 to-yellow-400  rounded-lg ${
                   item.subMenu?.length === 0 ? "" : "px-4 py-2"
                 }`}
               >
@@ -203,7 +203,7 @@ export default function Header({ isScroll }: Props) {
       <div
         className={` ${
           isActive ? "flex absolute z-50" : "hidden"
-        } top-0 text-white right-0 flex-col bg-gradient-to-r from-yellow-600 to-yellow-500 gap-3 px-5 py-4 rounded-bl-xl w-60`}
+        } top-0 text-white right-0 flex-col bg-gradient-to-r from-yellow-500 to-yellow-400 gap-3 px-5 py-4 rounded-bl-xl w-60`}
       >
         <button onClick={() => setIsActive(!isActive)}>
           <ArrowRightFromLine />
@@ -228,7 +228,7 @@ export default function Header({ isScroll }: Props) {
 
               {subActive === item.name && (
                 <div
-                  className={`flex flex-col gap-3 mt-2 bg-gradient-to-r from-blue-400 to-cyan-400  rounded-lg ${
+                  className={`flex flex-col gap-3 mt-2 bg-gradient-to-r from-yellow-500 to-yellow-400  rounded-lg ${
                     item.subMenu?.length === 0 ? "" : "px-4 py-2"
                   }`}
                 >
